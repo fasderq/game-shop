@@ -1,0 +1,59 @@
+parameters:
+services:
+  config_locator:
+    class: Symfony\Component\Config\FileLocator
+    arguments:
+      - '%path.cfg%'
+  request_context:
+    class: Symfony\Component\Routing\RequestContext
+    arguments:
+      - ''
+      - GET
+      - 'game-shop.local'
+      - 'http'
+  route_loader:
+    class: Symfony\Component\Routing\Loader\YamlFileLoader
+    arguments:
+      - '@config_locator'
+  router:
+    class: Symfony\Component\Routing\Router
+    autowiring_types: Symfony\Component\Routing\Router
+    arguments:
+      - '@route_loader'
+      - 'routes.yml'
+      - []
+      - '@request_context'
+  twig_loader:
+    class: Twig_Loader_Filesystem
+    arguments:
+      - '%path.tpl%'
+  twig_extension_text:
+    class: Twig_Extensions_Extension_Text
+  twig:
+    class: Twig_Environment
+    autowiring_types: Twig_Environment
+    arguments:
+      - '@twig_loader'
+    calls:
+      - [addExtension, ['@twig_extension_text']]
+      - [addGlobal, ['router', '@router']]
+  db_core_connection:
+    class: Doctrine\DBAL\Connection
+    autowiring_types: Doctrine\DBAL\Connection
+    factory: ['Doctrine\DBAL\DriverManager', getConnection]
+    arguments:
+      -
+        dbname: '%mysql.dbname%'
+        user: '%mysql.user%'
+        password: '%mysql.passwd%'
+        host: '%mysql.host%'
+        driver: 'pdo_mysql'
+        charset: 'UTF8'
+
+  controller.general:
+    class: GameShop\Site\Frontoffice\General\Controller\GeneralController
+    autowire: true
+
+  controller.auth:
+    class: GameShop\Site\Backoffice\Auth\Controller\AuthController
+    autowire: true

@@ -1,0 +1,25 @@
+{
+  "name": "fasderq/game-shop",
+  "minimum-stable": true,
+  "licence": "proprietary",
+  "require" : {
+    "php": ">=7.1",
+    "doctrine/dbal": "^2.5",
+    "symfony/routing": "^3.1",
+    "symfony/dependency-injection": "^3.1",
+    "symfony/yaml": "^3.1",
+    "symfony/http-foundation": "^3.1",
+    "symfony/config": "^3.1",
+    "twig/twig": "~1.0",
+    "twig/extensions": "^1.4"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "secure-http": false
+  },
+  "autoload": {
+    "psr-4": {
+      "GameShop\\Site\\": "src/"
+    }
+  }
+}

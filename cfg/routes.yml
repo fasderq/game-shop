@@ -1,0 +1,15 @@
+index:
+  path:     /
+  defaults: { _controller: 'general', _action: 'index' }
+backoffice-index:
+  path:     /backoffice
+  defaults: { _controller: 'auth', _action: 'index' }
+backoffice-login:
+  path:     /backoffice/login
+  defaults: { _controller: 'auth', _action: 'login' }
+backoffice-logout:
+  path:     /backoffice/logout
+  defaults: { _controller: 'auth', _action: 'logout' }
+backoffice-welcome:
+  path:     /backoffice/welcome
+  defaults: { _controller: 'auth', _action: 'welcome' }
