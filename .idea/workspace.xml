@@ -2,87 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd68eb28-5953-40ad-b477-b0403f349814" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/about.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/arrows.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/arrows1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/banner1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/banner2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/banner3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/c4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/e1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/e2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/e3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/f1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g2big.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g3big.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g4big.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g7big.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/g8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/img-sp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/img-sprite.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ng8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/s1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/sbbg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/t1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/t2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/t3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/t4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/teambg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/tg1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/tg2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/tg3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/tg4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/themes.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tpl/frontoffice/general/header.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tpl/frontoffice/general/servises.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tpl/frontoffice/general/trend.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tpl/frontoffice/layout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/flexslider.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/popup-box.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery.flexisel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery.flexslider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery.magnific-popup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/modernizr.custom.53451.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/responsiveslides.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap-theme.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/js/jquery-3.2.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/js/npm.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cfg/routes.yml" afterPath="$PROJECT_DIR$/cfg/routes.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Frontoffice/General/Controller/GeneralController.php" afterPath="$PROJECT_DIR$/src/Frontoffice/General/Controller/GeneralController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frontoffice/general/main.html" afterPath="$PROJECT_DIR$/tpl/frontoffice/general/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/bootstrap.css" afterPath="$PROJECT_DIR$/web/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/bootstrap.js" afterPath="$PROJECT_DIR$/web/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/backoffice/layout.html" afterPath="$PROJECT_DIR$/tpl/backoffice/layout.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -114,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trend.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="trend.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/frontoffice/general/trend.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="55">
               <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tpl/backoffice/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="34" column="60" lean-forward="false" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -202,7 +132,6 @@
         <option value="$PROJECT_DIR$/src/Backoffice/Page/Repository/PageRepository.php" />
         <option value="$PROJECT_DIR$/tpl/backoffice/page/page_list.html" />
         <option value="$PROJECT_DIR$/tpl/backoffice/page/page_row.html" />
-        <option value="$PROJECT_DIR$/tpl/backoffice/layout.html" />
         <option value="$PROJECT_DIR$/web/js/responsiveslides.min.js" />
         <option value="$PROJECT_DIR$/tpl/frontoffice/general/servises.html" />
         <option value="$PROJECT_DIR$/tpl/frontoffice/general/new_games.html" />
@@ -223,6 +152,7 @@
         <option value="$PROJECT_DIR$/tpl/frontoffice/contact/contact_form.html" />
         <option value="$PROJECT_DIR$/tpl/frontoffice/contact/contact.html" />
         <option value="$PROJECT_DIR$/tpl/frontoffice/general/trend.html" />
+        <option value="$PROJECT_DIR$/tpl/backoffice/layout.html" />
       </list>
     </option>
   </component>
@@ -295,10 +225,6 @@
               <option name="myItemId" value="tpl" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontoffice" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -313,58 +239,8 @@
               <option name="myItemId" value="tpl" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontoffice" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="General" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-shop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cfg" />
+              <option name="myItemId" value="backoffice" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -488,17 +364,18 @@
       <workItem from="1498675984661" duration="1895000" />
       <workItem from="1498891038242" duration="20356000" />
       <workItem from="1498918621308" duration="11197000" />
-      <workItem from="1499001739873" duration="10137000" />
+      <workItem from="1499001739873" duration="11103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50659000" />
+    <option name="totallyTimeSpent" value="51625000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="1922" height="1056" extended-state="0" />
+    <frame x="-1" y="25" width="1922" height="1056" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18623266" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18623266" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -720,14 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/backoffice/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="20" column="80" lean-forward="false" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Backoffice/Page/Controller/PageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1029">
@@ -926,6 +795,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
           <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/backoffice/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="34" column="60" lean-forward="false" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
           <folding />
         </state>
       </provider>
