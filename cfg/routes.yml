@@ -1,6 +1,12 @@
 index:
   path:     /
   defaults: { _controller: 'general', _action: 'index' }
+about:
+  path:     /about
+  defaults: { _controller: 'general', _action: 'about' }
+contact:
+  path:     /contact
+  defaults: { _controller: 'general', _action: 'contact' }
 backoffice-index:
   path:     /backoffice
   defaults: { _controller: 'auth', _action: 'index' }

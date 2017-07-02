@@ -38,4 +38,26 @@ class GeneralController
             []
         );
     }
+
+    /**
+     * @return Response
+     */
+    public function about(): Response
+    {
+        return $this->renderer->getHtmlResponse(
+            'frontoffice/about/about.html',
+            []
+        );
+    }
+
+    /**
+     * @return Response
+     */
+    public function contact(): Response
+    {
+        return $this->renderer->getHtmlResponse(
+            'frontoffice/contact/contact.html',
+            []
+        );
+    }
 }

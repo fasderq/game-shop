@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>main page</h1>
-</body>
-</html>
+{% extends 'frontoffice/layout.html' %}
+
+{% block content %}
+
+{% include 'frontoffice/general/header.html' %}
+
+{% include 'frontoffice/general/trend.html' %}
+
+{% include 'frontoffice/general/servises.html' %}
+
+{% include 'frontoffice/general/new_games.html' %}
+
+{% include 'frontoffice/general/flex_slider.html' %}
+
+{% endblock %}
