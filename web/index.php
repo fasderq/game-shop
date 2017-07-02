@@ -17,9 +17,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-//print("\n\n<br><br>log_errors: ".ini_get('log_errors'));
-//print("\n\n<br><br>error_log: ".ini_get('error_log'));
-
 
 
 spl_autoload_register(function ($class) {
@@ -34,7 +31,6 @@ spl_autoload_register(function ($class) {
 $container = (function (): ContainerInterface {
     $container = new ContainerBuilder();
 
-
     (new DiYamlLoader(
         $container,
         new FileLocator(sprintf('%s/../cfg', __DIR__))
@@ -42,24 +38,11 @@ $container = (function (): ContainerInterface {
 
     (new EnvLoader($container))->load();
 
-
     $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
     $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));
     $container->setParameter('path.data', sprintf('%s/../data', __DIR__));
 
     $container->compile();
-
-
-
-
-
-//    if (!$diCacheDisabled) {
-//        if (!is_dir($cacheDir)) {
-//            mkdir($cacheDir, 0777, true);
-//        }
-//        file_put_contents($cacheFile, (new PhpDumper($container))->dump());
-//    }
-
 
     return $container;
 })();
@@ -76,7 +59,7 @@ if ($container instanceof ContainerInterface) {
         $session->start();
         $request = Request::createFromGlobals();
         $request->setSession($session);
-//
+
         if ($container->hasParameter('www.proxied') && $container->getParameter('www.proxied')) {
             $request->setTrustedProxies(['0.0.0.0/0']);
         }

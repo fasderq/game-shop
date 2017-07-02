@@ -57,3 +57,7 @@ services:
   controller.auth:
     class: GameShop\Site\Backoffice\Auth\Controller\AuthController
     autowire: true
+
+  controller.backoffice_page:
+    class: GameShop\Site\Backoffice\Page\Controller\PageController
+    autowire: true

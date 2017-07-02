@@ -13,3 +13,12 @@ backoffice-logout:
 backoffice-welcome:
   path:     /backoffice/welcome
   defaults: { _controller: 'auth', _action: 'welcome' }
+backoffice-page-list:
+  path:     /backoffice/page/list
+  defaults: { _controller: 'backoffice_page', _action: 'pageList' }
+backoffice-page-edit:
+  path:     /backoffice/page/{id}/edit
+  defaults: { _controller: 'backoffice_page', _action: 'pageEdit' }
+backoffice-page-delete:
+  path:     /backoffice/page/{id}/delete
+  defaults: { _controller: 'backoffice_page', _action: 'pageDelete' }

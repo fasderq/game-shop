@@ -1,0 +1,47 @@
+{% extends 'backoffice/layout.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Page list</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Path</th>
+                <th>id</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if 0 == rootPages|length %}
+            <tr>
+                <td colspan="99">Pages not found</td>
+            </tr>
+            {% endif %}
+            {% for id, page in rootPages %}
+            {% include 'backoffice/page/page_row.html' with {
+                    'id': id,
+                    'page': page,
+                    'childPages': childPages,
+                    'pathPrefix': '/'
+                }
+            %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="{{router.generate('backoffice-page-edit', {'id': 0})}}">
+            <i class="glyphicon glyphicon-plus"></i> Add new page
+        </a>
+    </div>
+</div>
+
+{% endblock %}

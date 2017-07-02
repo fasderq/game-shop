@@ -1,0 +1,24 @@
+<tr>
+    <td>{{ pathPrefix }}{{ page.getCode() }}</td>
+    <td>{{ id }}</td>
+    <td>{{ page.getTitle }}</td>
+    <td>{{ page.getPosition }}</td>
+    <td>
+        <a href="{{router.generate('backoffice-page-edit', {'id': id})}}">
+            <i class="glyphicon glyphicon-pencil"></i>
+        </a>
+        <a href="{{router.generate('backoffice-page-delete', {'id': id})}}">
+            <i class="glyphicon glyphicon-remove"></i>
+        </a>
+    </td>
+</tr>
+
+{% for childId, childPage in childPages[id] %}
+    {% include 'backoffice/page/page_row.html' with {
+            'id': childId,
+            'page': childPage,
+            'childPages': childPages,
+            'pathPrefix': pathPrefix ~ page.getCode() ~ '/'
+        }
+    %}
+{% endfor %}
