@@ -1,0 +1,43 @@
+{% extends 'backoffice/layout.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Special offer</th>
+                    <th>Required age</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for id, game in games %}
+                <tr>
+                    <td>{{ game.getName() }}</td>
+                    <td>{{ game.getCategory() }}</td>
+                    <td>{{ game.getGenre() }}</td>
+                    <td>{{ game.getPrice() }}</td>
+                    <td>{{ game.getSpecialOffer() }}</td>
+                    <td>{{ game.getRequiredAge() }}</td>
+                    <td>
+                        <a href="{{router.generate('backoffice-game-edit', {'id': id})}}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <a href="{{router.generate('backoffice-game-delete', {'id': id})}}">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

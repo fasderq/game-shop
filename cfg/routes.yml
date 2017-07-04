@@ -28,3 +28,12 @@ backoffice-page-edit:
 backoffice-page-delete:
   path:     /backoffice/page/{id}/delete
   defaults: { _controller: 'backoffice_page', _action: 'pageDelete' }
+backoffice-game-list:
+  path:     /backoffice/game/list
+  defaults: { _controller: 'backoffice_game', _action: 'gameList' }
+backoffice-game-edit:
+  path:     /backoffice/game/{id}/edit
+  defaults: { _controller: 'backoffice_game', _action: 'gameEdit' }
+backoffice-game-delete:
+  path:     /backoffice/game/{id}/delete
+  defaults: { _controller: 'backoffice_game', _action: 'deleteGame' }

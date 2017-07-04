@@ -136,6 +136,8 @@ class PageController
      */
     public function pageDelete(Request $request): RedirectResponse
     {
+        $this->sessionService->requireUserId($request->getSession());
+
         $this->pageRepository->deletePage((int)$request->get('id'));
 
         return new RedirectResponse($this->router->generate('backoffice-page-list'));

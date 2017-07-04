@@ -61,3 +61,7 @@ services:
   controller.backoffice_page:
     class: GameShop\Site\Backoffice\Page\Controller\PageController
     autowire: true
+
+  controller.backoffice_game:
+    class: GameShop\Site\Backoffice\Game\Controller\GameController
+    autowire: true
