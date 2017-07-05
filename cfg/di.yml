@@ -23,6 +23,21 @@ services:
       - 'routes.yml'
       - []
       - '@request_context'
+  swift_transport:
+    class: \Swift_SmtpTransport
+    autowiring_types: \Swift_SmtpTransport
+    arguments:
+      - 'smtp.gmail.com'
+      - '25'
+      - 'tls'
+    calls:
+      - [setUsername, ['']]
+      - [setPassword, ['']]
+  swift_mailer:
+    class: \Swift_Mailer
+    autowiring_types: \Swift_Mailer
+    arguments:
+      - '@swift_transport'
   twig_loader:
     class: Twig_Loader_Filesystem
     arguments:
@@ -60,4 +75,8 @@ services:
 
   controller.backoffice_page:
     class: GameShop\Site\Backoffice\Page\Controller\PageController
+    autowire: true
+
+  controller.backoffice_mail:
+    class: GameShop\Site\Backoffice\Mail\Controller\MailController
     autowire: true
