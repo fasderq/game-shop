@@ -28,3 +28,6 @@ backoffice-page-edit:
 backoffice-page-delete:
   path:     /backoffice/page/{id}/delete
   defaults: { _controller: 'backoffice_page', _action: 'pageDelete' }
+backoffice-mail-list:
+  path:     /backoffice/mail/list
+  defaults: { _controller: 'backoffice_mail', _action: 'mailList' }

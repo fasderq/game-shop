@@ -8,6 +8,7 @@ class ComposerStaticInit042d34018963650da5c6de954911cf76
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -33,6 +34,10 @@ class ComposerStaticInit042d34018963650da5c6de954911cf76
         'G' => 
         array (
             'GameShop\\Site\\' => 14,
+        ),
+        'E' => 
+        array (
+            'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
         array (
@@ -86,6 +91,10 @@ class ComposerStaticInit042d34018963650da5c6de954911cf76
         'GameShop\\Site\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Egulias\\EmailValidator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (

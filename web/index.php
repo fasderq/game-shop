@@ -18,7 +18,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-
 spl_autoload_register(function ($class) {
     if (0 === strpos($class, 'GameShop\\Site\\')) {
         $file = __DIR__ . '/../src/' . str_replace('\\', '/', substr($class, 14)) . '.php';
@@ -46,7 +45,6 @@ $container = (function (): ContainerInterface {
 
     return $container;
 })();
-
 
 if ($container instanceof ContainerInterface) {
     /**
@@ -94,5 +92,3 @@ if ($container instanceof ContainerInterface) {
         ))->send();
     }
 }
-
-
