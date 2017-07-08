@@ -94,5 +94,3 @@ if ($container instanceof ContainerInterface) {
         ))->send();
     }
 }
-
-
