@@ -1,0 +1,65 @@
+<?php
+
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader as DiYamlLoader;
+use Symfony\Component\Config\FileLocator;
+use GameShop\Site\General\EnvLoader;
+use Symfony\Component\Console\Application;
+use GameShop\Site\Console\UserCommand;
+use Doctrine\DBAL\Connection;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
+spl_autoload_register(function ($class) {
+    if (0 === strpos($class, 'GameShop\\Site\\')) {
+        $file = __DIR__ . '/../src/' . str_replace('\\', '/', substr($class, 14)) . '.php';
+        if (is_readable($file)) {
+            require $file;
+        }
+    }
+});
+
+$container = (function (): ContainerInterface {
+    $container = new ContainerBuilder();
+
+    (new DiYamlLoader(
+        $container,
+        new FileLocator(sprintf('%s/../cfg', __DIR__))
+    ))->load('di.yml');
+
+    (new EnvLoader($container))->load();
+
+    $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
+    $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));
+    $container->setParameter('path.data', sprintf('%s/../data', __DIR__));
+
+    $container->setParameter('mysql.host', 'localhost');
+    $container->setParameter('mysql.dbname', 'game-shop');
+    $container->setParameter('mysql.user', 'root');
+    $container->setParameter('mysql.passwd', 123456);
+
+    $container->compile();
+
+    return $container;
+})();
+
+if ($container instanceof ContainerInterface) {
+
+    $application = new Application();
+    $connection = $container->get('db_core_connection');
+
+    if ($connection instanceof Connection) {
+        $userCommand = new UserCommand();
+        $userCommand->setConnection($connection);
+        $application->add($userCommand);
+    }
+
+
+    $application->run();
+}
