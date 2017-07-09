@@ -2,6 +2,7 @@
 namespace GameShop\Site\Backoffice\Game\Controller;
 
 
+use GameShop\Site\Backoffice\Game\Enum\GameGenreEnum;
 use GameShop\Site\Backoffice\Game\Repository\GameRepository;
 use GameShop\Site\General\Renderer;
 use GameShop\Site\User\Service\SessionService;
@@ -66,8 +67,7 @@ class GameController
         $this->sessionService->requireUserId($request->getSession());
 
         $gameId = (int)$request->get('id');
-
-
+        var_dump($this->getGameGenres());
 
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_edit.html',
@@ -78,6 +78,28 @@ class GameController
             ],
             $request->getSession()
         );
+    }
+
+    protected function getGameGenres()
+    {
+        return [
+            GameGenreEnum::ACTION,
+            GameGenreEnum::ADVENTURE,
+            GameGenreEnum::ARCADE,
+            GameGenreEnum::DETECTIVE,
+            GameGenreEnum::ECONOMIC,
+            GameGenreEnum::FANTASY,
+            GameGenreEnum::FIGHTING,
+            GameGenreEnum::HORROR,
+            GameGenreEnum::PUZZLE,
+            GameGenreEnum::QUEST,
+            GameGenreEnum::RACING,
+            GameGenreEnum::RPG,
+            GameGenreEnum::SHOOTER,
+            GameGenreEnum::SIMULATOR,
+            GameGenreEnum::SPORT,
+            GameGenreEnum::STRATEGY
+        ];
     }
 
     /**
