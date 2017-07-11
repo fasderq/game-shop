@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Router;
 
+
 /**
  * Class ConsoleController
  * @package GameShop\Site\Backoffice\Console\Controller

@@ -59,7 +59,8 @@ class ConsoleRepository
             $consoles[$console['id']] = $this->rowToConsole($console);
         }
         var_dump($consoles);
-//        return $consoles;
+
+        //        return $consoles;
     }
 
     /**
