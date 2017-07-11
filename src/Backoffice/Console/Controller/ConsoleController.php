@@ -45,43 +45,23 @@ class ConsoleController
      * @param Request $request
      * @return Response
      */
-    public function consoleList()
+    public function consoleList(Request $request): Response
     {
 
-        return 'SASSSSSSSSSSSSSSSSSSSSS';
+        $this->sessionService->requireUserId($request->getSession());
 
-//        $this->sessionService->requireUserId($request->getSession());
-
-//        return $this->renderer->getHtmlResponse(
-//            'backoffice/console/console_list.html', ['text' => 'adfadfadf']
-//            [
-//                'rootConsoles' => $rootConsoles = $this->ConsoleRepository->getConsoles(null),
-//                'childConsoles' => $this->getChildConsoles(array_keys($rootConsoles))
-//            ],
-//            $request->getSession()
-//        );
+        return $this->renderer->getHtmlResponse(
+            'backoffice/console/console_list.html', ['text' => 'adfadfadf'],
+            $request->getSession()
+        );
     }
 
-    /**
-     * @param array $ConsoleIds
-     * @return Console[]
-     */
-    protected function getChildConsoles(array $consoleIds): array
-    {
-        $childConsoles = [];
-        foreach ($consoleIds as $consoleId) {
-            $childConsoles[$consoleId] = $this->ConsoleRepository->getConsoles($consoleId);
-            $childConsoles += $this->getChildConsoles(array_keys($childConsoles[$consoleId]));
-        }
-
-        return $childConsoles;
-    }
 
     /**
      * @param Request $request
      * @return Response
      */
-    public function ConsoleEdit(Request $request): Response
+    public function consoleEdit(Request $request): Response
     {
         $this->sessionService->requireUserId($request->getSession());
 
