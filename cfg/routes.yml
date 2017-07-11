@@ -37,4 +37,5 @@ backoffice-console-edit:
 backoffice-console-delete:
     path:     /backoffice/console/{id}/delete
     defaults: { _controller: 'backoffice_console', _action: 'consoleDelete' }
+    
 
