@@ -58,8 +58,7 @@ class ConsoleRepository
         foreach($data as $console) {
             $consoles[$console['id']] = $this->rowToConsole($console);
         }
-        var_dump($consoles);
-//        return $consoles;
+        return $consoles;
     }
 
     /**
@@ -105,7 +104,8 @@ class ConsoleRepository
     protected function rowToConsole(array $row): Console
     {
         return new Console(
-            $row['name']
+            $row['name'],
+            $row ['is_active']
         );
     }
 }
