@@ -28,3 +28,13 @@ backoffice-page-edit:
 backoffice-page-delete:
   path:     /backoffice/page/{id}/delete
   defaults: { _controller: 'backoffice_page', _action: 'pageDelete' }
+backoffice-console-list:
+    path:     /backoffice/console/list
+    defaults: { _controller: 'backoffice_console', _action: 'consoleList' }
+backoffice-console-edit:
+    path:     /backoffice/console/{id}/edit
+    defaults: { _controller: 'backoffice_console', _action: 'consoleEdit' }
+backoffice-console-delete:
+    path:     /backoffice/console/{id}/delete
+    defaults: { _controller: 'backoffice_console', _action: 'consoleDelete' }
+
