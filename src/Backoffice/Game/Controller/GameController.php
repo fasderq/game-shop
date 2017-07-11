@@ -4,6 +4,7 @@ namespace GameShop\Site\Backoffice\Game\Controller;
 
 use GameShop\Site\Backoffice\Game\Enum\GameGenreEnum;
 use GameShop\Site\Backoffice\Game\Repository\GameRepository;
+use GameShop\Site\Backoffice\GameCategory\Repository\GameCategoryRepository;
 use GameShop\Site\General\Renderer;
 use GameShop\Site\User\Service\SessionService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,6 +22,7 @@ class GameController
     protected $renderer;
     protected $sessionService;
     protected $gameRepository;
+    protected $gameCategoryRepository;
 
     /**
      * GameController constructor.
@@ -28,17 +30,20 @@ class GameController
      * @param Renderer $renderer
      * @param SessionService $sessionService
      * @param GameRepository $gameRepository
+     * @param GameCategoryRepository $gameCategoryRepository
      */
     public function __construct(
         Router $router,
         Renderer $renderer,
         SessionService $sessionService,
-        GameRepository $gameRepository
+        GameRepository $gameRepository,
+        GameCategoryRepository $gameCategoryRepository
     ) {
         $this->router =  $router;
         $this->renderer = $renderer;
         $this->sessionService =  $sessionService;
         $this->gameRepository =  $gameRepository;
+        $this->gameCategoryRepository = $gameCategoryRepository;
     }
 
     /**
@@ -48,7 +53,7 @@ class GameController
     public function gameList(Request $request): Response
     {
         $this->sessionService->requireUserId($request->getSession());
-            var_dump($this->gameRepository->getGames());
+
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_list.html',
             [
@@ -67,39 +72,17 @@ class GameController
         $this->sessionService->requireUserId($request->getSession());
 
         $gameId = (int)$request->get('id');
-        var_dump($this->getGameGenres());
 
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_edit.html',
             [
                 'id' => $gameId,
                 'errors' => $errors ?? [],
-                'data' => $data ?? []
+                'data' => $data ?? [],
+                'gameCategories' => $this->gameCategoryRepository->getGameCategories()
             ],
             $request->getSession()
         );
-    }
-
-    protected function getGameGenres()
-    {
-        return [
-            GameGenreEnum::ACTION,
-            GameGenreEnum::ADVENTURE,
-            GameGenreEnum::ARCADE,
-            GameGenreEnum::DETECTIVE,
-            GameGenreEnum::ECONOMIC,
-            GameGenreEnum::FANTASY,
-            GameGenreEnum::FIGHTING,
-            GameGenreEnum::HORROR,
-            GameGenreEnum::PUZZLE,
-            GameGenreEnum::QUEST,
-            GameGenreEnum::RACING,
-            GameGenreEnum::RPG,
-            GameGenreEnum::SHOOTER,
-            GameGenreEnum::SIMULATOR,
-            GameGenreEnum::SPORT,
-            GameGenreEnum::STRATEGY
-        ];
     }
 
     /**

@@ -37,3 +37,12 @@ backoffice-game-edit:
 backoffice-game-delete:
   path:     /backoffice/game/{id}/delete
   defaults: { _controller: 'backoffice_game', _action: 'deleteGame' }
+backoffice-game-category-list:
+  path:      /backoffice/game-category/list
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryList' }
+backoffice-game-category-edit:
+  path:     /backoffice/game-category/{id}/edit
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryEdit' }
+backoffice-game-category-delete:
+  path:     /backoffice/game-category/{id}/delete
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryDelete' }

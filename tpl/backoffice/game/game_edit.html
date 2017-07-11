@@ -7,21 +7,29 @@
         <h1>Game edit</h1>
     </div>
 </div>
-<!--$row['name'],-->
-<!--$row['category'],-->
-<!--$row['genre'],-->
-<!--$row['price'],-->
-<!--$row['special_offer'],-->
-<!--$row['required_age'],-->
-<!--$row['is_active']-->
+
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <form action="{{router.generate('backoffice-game-edit', {'id': id})}}">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="data[name]" value="{{data[name]}}">
-                <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="data[category]" value="{{data[category]}}">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for id, gameCategory in gameCategories %}
+                        <tr>
+                            <td><input type="checkbox" name="data[categories][]" value="{{id}}"></td>
+                            <td>{{ gameCategory.getName() }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </form>
     </div>
