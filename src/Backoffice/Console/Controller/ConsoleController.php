@@ -52,7 +52,7 @@ class ConsoleController
 
         return $this->renderer->getHtmlResponse(
             'backoffice/console/console_list.html', [
-            'consoles' => $rootPages = $this->consoleRepository->getConsoles(),
+            'consoles' => $consoles = $this->consoleRepository->getConsoles(),
         ],
             $request->getSession()
         );
