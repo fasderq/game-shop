@@ -50,14 +50,13 @@ class ConsoleRepository
             ->select('*')
             ->from('console');
 
-        $data = $query->execute->fetchAll();
-
-        var_dump($data); die;
+        $data = $query->execute()->fetchAll();
 
         $consoles = [];
         foreach($data as $console) {
             $consoles[$console['id']] = $this->rowToConsole($console);
         }
+
         return $consoles;
     }
 

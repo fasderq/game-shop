@@ -20,7 +20,7 @@ class ConsoleController
     protected $router;
     protected $renderer;
     protected $sessionService;
-    protected $ConsoleRepository;
+    protected $consoleRepository;
 
     /**
      * ConsoleController constructor.
@@ -33,12 +33,12 @@ class ConsoleController
         Router $router,
         Renderer $renderer,
         SessionService $sessionService,
-        ConsoleRepository $ConsoleRepository
+        ConsoleRepository $consoleRepository
     ) {
         $this->router = $router;
         $this->renderer = $renderer;
         $this->sessionService = $sessionService;
-        $this->ConsoleRepository = $ConsoleRepository;
+        $this->consoleRepository = $consoleRepository;
     }
 
     /**
@@ -51,7 +51,9 @@ class ConsoleController
         $this->sessionService->requireUserId($request->getSession());
 
         return $this->renderer->getHtmlResponse(
-            'backoffice/console/console_list.html', ['text' => 'adfadfadf'],
+            'backoffice/console/console_list.html', [
+            'consoles' => $rootPages = $this->consoleRepository->getConsoles(),
+        ],
             $request->getSession()
         );
     }
