@@ -44,7 +44,7 @@ class ConsoleRepository
      * @param int|null $parentId
      * @return Console[]
      */
-    public function getConsoles(int $parentId = null): array
+    public function getConsoles(): array
     {
         $query = $this->connection->createQueryBuilder()
             ->select('*')
