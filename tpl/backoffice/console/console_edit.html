@@ -20,28 +20,16 @@
     <div class="col-md-6 col-md-offset-3">
         <form action="{{router.generate('backoffice-console-edit', {'id': id})}}" method="post">
             <div class="form-group">
-                <label for="code">Code</label>
-                <input type="text" class="form-control" name="data[code]" id="code" placeholder="code"
+                <label for="code">Артикул</label>
+                <input type="text" class="form-control" name="data[code]" id="code" placeholder="Артикул"
                        value="{{ data['code'] }}">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" name="data[title]" id="title" placeholder="title"
-                       value="{{ data['title'] }}">
-                <label for="parentId">ParentId</label>
-                <input type="number" class="form-control" name="data[parent_id]" id="parentId" placeholder="parent id"
-                       value="{{ data['parent_id'] }}">
-                <label for="content">Content</label>
-                <textarea name="data[content]" class="form-control" id="content"
-                          placeholder="content">{{ data['content'] }}</textarea>
-                <label for="keywords">Keywords</label>
-                <input type="text" class="form-control" name="data[keywords]" id="keywords" placeholder="keywords"
-                       value="{{ data['keywords'] }}">
-                <label for="position">Position</label>
-                <input type="number" class="form-control" name="data[position]" id="position" placeholder="position"
-                       value="{{ data['position'] }}">
+                <label for="title">Модель</label>
+                <input type="text" class="form-control" name="data[name]" id="title" placeholder="Модель"
+                       value="{{ data['name'] }}">
                 <input type="hidden" name="data[is_active]" value="1">
             </div>
-            <button type="submit" class="btn btn-default" name="data[submit]" value="submit">Submit</button>
-            <a class="btn btn-default" href="{{router.generate('backoffice-console-list')}}">Cancel</a>
+            <button type="submit" class="btn btn-default" name="data[submit]" value="submit">Записать</button>
+            <a class="btn btn-default" href="{{router.generate('backoffice-console-list')}}">Отменить</a>
         </form>
 
     </div>

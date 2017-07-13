@@ -48,7 +48,8 @@ class ConsoleRepository
     {
         $query = $this->connection->createQueryBuilder()
             ->select('*')
-            ->from('console');
+            ->from('console')
+            ->where('is_active =1');
 
         $data = $query->execute()->fetchAll();
 
@@ -63,9 +64,10 @@ class ConsoleRepository
     /**
      * @param Console $Console
      */
-    public function addConsole(Console $Console): void
+    public function addConsole(Console $console): void
     {
-        $this->connection->insert('console', $this->ConsoleToRow($Console));
+
+        $this->connection->insert('console', $this->ConsoleToRow($console));
     }
 
     /**
@@ -92,7 +94,9 @@ class ConsoleRepository
     protected function ConsoleToRow(Console $console): array
     {
         return [
-            'name' => $console->getName()
+            'code' => $console->getCode(),
+            'name' => $console->getName(),
+            'is_active' => $console->isActive()
         ];
     }
 
@@ -103,6 +107,7 @@ class ConsoleRepository
     protected function rowToConsole(array $row): Console
     {
         return new Console(
+            $row['code'],
             $row['name'],
             $row ['is_active']
         );

@@ -98,20 +98,15 @@ class ConsoleController
      */
     protected function saveConsoleFormData(array $data, ?int $consoleId = null): void
     {
-        $Console = new Console(
+        $console = new Console(
             $data['code'],
-            $data['title'],
-            $data['parent_id'] ?: null,
-            $data['content'] ?: null,
-            $data['keywords'] ?: null,
-            $data['position'] ?: 0,
-            $data['is_active']
+            $data['name']
         );
 
         if ($consoleId) {
-            $this->ConsoleRepository->editConsole($Console, $consoleId);
+            $this->consoleRepository->editConsole($console, $consoleId);
         } else {
-            $this->ConsoleRepository->addConsole($Console);
+            $this->consoleRepository->addConsole($console);
         }
     }
 
@@ -136,11 +131,7 @@ class ConsoleController
 
         return [
             'code' => $console->getCode(),
-            'title' => $console->getTitle(),
-            'parent_id' => $console->getParentId(),
-            'content' => $console->getContent(),
-            'keywords' => $console->getKeywords(),
-            'position' => $console->getPosition()
+            'name' => $console->getName()
         ];
     }
 
@@ -153,11 +144,11 @@ class ConsoleController
         $errors = [];
 
         if (empty(trim($data['code']))) {
-            $errors['code'] = 'code is required';
+            $errors['code'] = 'Нужен артикул';
         }
 
-        if (empty(trim($data['title']))) {
-            $errors['title'] = 'title is required';
+        if (empty(trim($data['name']))) {
+            $errors['name'] = 'Модель консоли не введен';
         }
 
         return $errors;

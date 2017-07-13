@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <h2>Console list</h2>
+        <h2>Игровые консоли</h2>
     </div>
 </div>
 
@@ -14,16 +14,17 @@
             <thead>
             <tr>
                 <th>id</th>
-                <th>Name</th>
-                <th></th>
+                <th>Артикул</th>
+                <th>Модель</th>
             </tr>
             </thead>
             <tbody>
 
-            {% for id, name in consoles %}
+            {% for id, console in consoles %}
             <tr>
                 <td>{{ id }}</td>
-                <td> {{ name.name }}</td>
+                <td>{{ console.code }}</td>
+                <td> {{ console.name }}</td>
                 {% endfor %}
             </tbody>
         </table>
