@@ -1,17 +1,37 @@
 {% extends 'backoffice/layout.html' %}
 
 {% block content %}
-
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h2>Console list</h2>
     </div>
 </div>
 
-<div>
-    {% for id,cons  in consoles %}
 
-    <div>{{ id }}  {{ cons.name }}</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
 
-    {% endfor %}
+            {% for id, name in consoles %}
+            <tr>
+                <td>{{ id }}</td>
+                <td> {{ name.name }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="{{router.generate('backoffice-console-edit', {'id': 0})}}">
+            <i class="glyphicon glyphicon-plus"></i> Добавить консоль
+        </a>
+    </div>
 </div>
+
+{% endblock %}
