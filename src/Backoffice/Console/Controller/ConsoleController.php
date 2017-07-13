@@ -1,4 +1,5 @@
 <?php
+
 namespace GameShop\Site\Backoffice\Console\Controller;
 
 
@@ -34,7 +35,8 @@ class ConsoleController
         Renderer $renderer,
         SessionService $sessionService,
         ConsoleRepository $consoleRepository
-    ) {
+    )
+    {
         $this->router = $router;
         $this->renderer = $renderer;
         $this->sessionService = $sessionService;
@@ -152,5 +154,10 @@ class ConsoleController
         }
 
         return $errors;
+    }
+
+    protected function specificationEdit()
+    {
+
     }
 }

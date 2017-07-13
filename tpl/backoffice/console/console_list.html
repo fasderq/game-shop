@@ -26,11 +26,14 @@
                 <td>{{ id }}</td>
                 <td>{{ console.code }}</td>
                 <td>{{ console.name }}</td>
-                <td><a href="{{router.generate('backoffice-console-edit', {'id': id})}}">
-                    <i class="glyphicon"></i>Edit
-                </a><a href="{{router.generate('backoffice-console-delete', {'id': id})}}">
-                    <i class="glyphicon"></i>Удалить
-                </a></td>
+                <td>
+                    <a href="{{router.generate('backoffice-console-edit', {'id': id})}}">
+                        <i class="glyphicon"></i>Редактировать</a>&nbsp
+                    <a href="{{router.generate('backoffice-console-delete', {'id': id})}}">
+                        <i class="glyphicon"></i>Удалить</a>&nbsp
+                    </a><a href="{{router.generate('backoffice-specification-edit', {'id': id})}}">
+                        <i class="glyphicon"></i>Спецификация</a>
+                </td>
                 {% endfor %}
             </tbody>
         </table>
