@@ -67,24 +67,24 @@ class ConsoleController
     {
         $this->sessionService->requireUserId($request->getSession());
 
-        $ConsoleId = (int)$request->get('id');
+        $consoleId = (int)$request->get('id');
 
         if ($request->get('data')['submit']) {
-            $ConsoleFormData = $request->get('data');
+            $consoleFormData = $request->get('data');
 
-            if (empty($errors = $this->validateConsoleFormData($ConsoleFormData))) {
-                $this->saveConsoleFormData($ConsoleFormData, $ConsoleId);
+            if (empty($errors = $this->validateConsoleFormData($consoleFormData))) {
+                $this->saveConsoleFormData($consoleFormData, $consoleId);
 
                 return new RedirectResponse($this->router->generate('backoffice-console-list'));
             }
-        } elseif ($ConsoleId) {
-            $ConsoleFormData = $this->getConsoleFormData($ConsoleId);
+        } elseif ($consoleId) {
+            $consoleFormData = $this->getConsoleFormData($consoleId);
         }
 
         return $this->renderer->getHtmlResponse(
             'backoffice/console/console_edit.html',
             [
-                'id' => $ConsoleId,
+                'id' => $consoleId,
                 'data' => $ConsoleFormData ?? [],
                 'errors' => $errors ?? []
             ],
@@ -114,11 +114,11 @@ class ConsoleController
      * @param Request $request
      * @return RedirectResponse
      */
-    public function ConsoleDelete(Request $request): RedirectResponse
+    public function consoleDelete(Request $request): RedirectResponse
     {
-        $this->ConsoleRepository->deleteConsole((int)$request->get('id'));
+        $this->consoleRepository->deleteConsole((int)$request->get('id'));
 
-        return new RedirectResponse($this->router->generate('backoffice-Console-list'));
+        return new RedirectResponse($this->router->generate('backoffice-console-list'));
     }
 
     /**
@@ -127,7 +127,7 @@ class ConsoleController
      */
     protected function getConsoleFormData(int $id): array
     {
-        $console = $this->ConsoleRepository->getConsole($id);
+        $console = $this->consoleRepository->getConsole($id);
 
         return [
             'code' => $console->getCode(),

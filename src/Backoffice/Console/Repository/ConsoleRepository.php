@@ -74,9 +74,9 @@ class ConsoleRepository
      * @param Console $Console
      * @param int $id
      */
-    public function editConsole(Console $Console, int $id): void
+    public function editConsole(Console $console, int $id): void
     {
-        $this->connection->update('console', $this->ConsoleToRow($Console), ['id' => $id]);
+        $this->connection->update('console', $this->ConsoleToRow($console), ['id' => $id]);
     }
 
     /**
@@ -84,7 +84,7 @@ class ConsoleRepository
      */
     public function deleteConsole(int $id): void
     {
-        $this->connection->update('console', ['id' => $id]);
+        $this->connection->delete('console', ['id' => $id]);
     }
 
     /**

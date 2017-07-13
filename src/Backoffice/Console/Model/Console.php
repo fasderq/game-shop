@@ -8,6 +8,7 @@ namespace GameShop\Site\Backoffice\Console\Model;
  */
 class Console
 {
+    protected $id;
     protected $name;
     protected $code;
     protected $isActive;
@@ -25,6 +26,16 @@ class Console
         $this->name = $name;
         $this->code = $code;
         $this->isActive = $isActive;
+    }
+
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**

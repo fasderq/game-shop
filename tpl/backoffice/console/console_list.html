@@ -16,6 +16,7 @@
                 <th>id</th>
                 <th>Артикул</th>
                 <th>Модель</th>
+                <th>Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -24,7 +25,12 @@
             <tr>
                 <td>{{ id }}</td>
                 <td>{{ console.code }}</td>
-                <td> {{ console.name }}</td>
+                <td>{{ console.name }}</td>
+                <td><a href="{{router.generate('backoffice-console-edit', {'id': id})}}">
+                    <i class="glyphicon"></i>Edit
+                </a><a href="{{router.generate('backoffice-console-delete', {'id': id})}}">
+                    <i class="glyphicon"></i>Удалить
+                </a></td>
                 {% endfor %}
             </tbody>
         </table>
