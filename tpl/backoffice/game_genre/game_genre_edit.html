@@ -1,0 +1,25 @@
+{% extends 'backoffice/layout.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <form action="{{router.generate('backoffice-game-genre-edit', {'id': id})}}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="data[name]" value="{{data['name']}}">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="data[description]" id="description">
+                    {{data['description']}}
+                </textarea>
+                <input type="hidden" name="data[is_active]" value="1">
+            </div>
+            <button type="submit" name="data[submit]" value="submit" class="btn btn-default">Submit</button>
+            <a href="{{router.generate('backoffice-game-genre-list')}}" class="btn btn-default">
+                Back
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

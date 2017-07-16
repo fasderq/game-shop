@@ -62,7 +62,18 @@ services:
     class: GameShop\Site\Backoffice\Page\Controller\PageController
     autowire: true
 
+  controller.backoffice_game:
+    class: GameShop\Site\Backoffice\Game\Controller\GameController
+    autowire: true
+
+  controller.backoffice_game-category:
+    class: GameShop\Site\Backoffice\GameCategory\Controller\GameCategoryController
+    autowire: true
+
+  controller.backoffice_game-genre:
+    class : GameShop\Site\Backoffice\GameGenre\Controller\GameGenreController
+    autowire: true
+
   controller.backoffice_console:
     class: GameShop\Site\Backoffice\Console\Controller\ConsoleController
     autowire: true
-

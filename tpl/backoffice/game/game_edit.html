@@ -1,0 +1,38 @@
+{% extends 'backoffice/layout.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Game edit</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form action="{{router.generate('backoffice-game-edit', {'id': id})}}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="data[name]" value="{{data[name]}}">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for id, gameCategory in gameCategories %}
+                        <tr>
+                            <td><input type="checkbox" name="data[categories][]" value="{{id}}"></td>
+                            <td>{{ gameCategory.getName() }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

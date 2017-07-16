@@ -28,13 +28,31 @@ backoffice-page-edit:
 backoffice-page-delete:
   path:     /backoffice/page/{id}/delete
   defaults: { _controller: 'backoffice_page', _action: 'pageDelete' }
-backoffice-console-list:
-    path:     /backoffice/console/list
-    defaults: { _controller: 'backoffice_console', _action: 'consoleList' }
-backoffice-console-edit:
-    path:     /backoffice/console/{id}/edit
-    defaults: { _controller: 'backoffice_console', _action: 'consoleEdit' }
-backoffice-console-delete:
-    path:     /backoffice/console/{id}/delete
-    defaults: { _controller: 'backoffice_console', _action: 'consoleDelete' }
+backoffice-game-list:
+  path:     /backoffice/game/list
+  defaults: { _controller: 'backoffice_game', _action: 'gameList' }
+backoffice-game-edit:
+  path:     /backoffice/game/{id}/edit
+  defaults: { _controller: 'backoffice_game', _action: 'gameEdit' }
+backoffice-game-delete:
+  path:     /backoffice/game/{id}/delete
+  defaults: { _controller: 'backoffice_game', _action: 'deleteGame' }
+backoffice-game-category-list:
+  path:      /backoffice/game-category/list
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryList' }
+backoffice-game-category-edit:
+  path:     /backoffice/game-category/{id}/edit
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryEdit' }
+backoffice-game-category-delete:
+  path:     /backoffice/game-category/{id}/delete
+  defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryDelete' }
+backoffice-game-genre-list:
+  path:     /backoffice/game-genre/list
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreList' }
+backoffice-game-genre-edit:
+  path:     /backoffice/game-genre/{id}/edit
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreEdit' }
+backoffice-game-genre-delete:
+  path:     /backoffice/game-genre/{id}/delete
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreDelete' }
 

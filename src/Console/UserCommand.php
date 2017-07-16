@@ -45,7 +45,6 @@ class UserCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         if ($this->connection instanceof Connection) {
-
             $query = $this->connection->createQueryBuilder()
                 ->select('*')
                 ->from('user')
