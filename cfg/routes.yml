@@ -46,3 +46,12 @@ backoffice-game-category-edit:
 backoffice-game-category-delete:
   path:     /backoffice/game-category/{id}/delete
   defaults: { _controller: 'backoffice_game-category', _action: 'gameCategoryDelete' }
+backoffice-game-genre-list:
+  path:     /backoffice/game-genre/list
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreList' }
+backoffice-game-genre-edit:
+  path:     /backoffice/game-genre/{id}/edit
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreEdit' }
+backoffice-game-genre-delete:
+  path:     /backoffice/game-genre/{id}/delete
+  defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreDelete' }

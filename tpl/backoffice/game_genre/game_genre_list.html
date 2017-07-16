@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-2">
-        {% if gameCategories %}
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+        {% if gameGenres %}
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -14,15 +14,15 @@
                 </tr>
             </thead>
             <tbody>
-            {% for id, gameCategory in gameCategories %}
+            {% for id, gameGenre in gameGenres %}
                 <tr>
-                    <td>{{ gameCategory.getName() }}</td>
-                    <td>{{ gameCategory.getDescription() }}</td>
+                    <td>{{ gameGenre.getName() }}</td>
+                    <td>{{ gameGenre.getDescription() }}</td>
                     <td>
-                        <a href="{{router.generate('backoffice-game-category-edit', {'id': id})}}">
+                        <a href="{{router.generate('backoffice-game-genre-edit', {'id': id})}}">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
-                        <a href="{{router.generate('backoffice-game-category-delete', {'id': id})}}">
+                        <a href="{{router.generate('backoffice-game-genre-delete', {'id': id})}}">
                             <i class="glyphicon glyphicon-remove"></i>
                         </a>
                     </td>
@@ -31,13 +31,11 @@
             </tbody>
         </table>
         {% else %}
-        <div class="text-center">
-            <h1>Game categories does not exists</h1>
-        </div>
+        <h1 class="text-center">GameGenres does not exist</h1>
         {% endif %}
-        <a href="{{router.generate('backoffice-game-category-edit', {'id': 0})}}" class="btn btn-default">
+        <a href="{{router.generate('backoffice-game-genre-edit', {'id': 0})}}" class="btn btn-default">
             <i class="glyphicon glyphicon-plus"></i>
-            Add category
+            Add game genre
         </a>
     </div>
 </div>

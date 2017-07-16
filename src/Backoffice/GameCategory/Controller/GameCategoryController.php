@@ -58,6 +58,10 @@ class GameCategoryController
         );
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function gameCategoryEdit(Request $request): Response
     {
         $this->sessionService->requireUserId($request->getSession());
