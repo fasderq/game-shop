@@ -13,23 +13,56 @@
         <form action="{{router.generate('backoffice-game-edit', {'id': id})}}">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="data[name]" value="{{data[name]}}">
+                <input type="text" class="form-control" id="name" name="data[name]" value="{{data['name']}}">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price"
+                       name="data[price]" value="{{data['price']}}">
+                <label for="required_age">Required age</label>
+                <input type="number" class="form-control" id="required_age"
+                       name="data[required_age]" value="{{data['required_age']}}">
+                <label for="special_offer">Special offer</label>
+                <input type="checkbox" class="checkbox" name="data[special_offer]"
+                       value="1" id="special_offer" {% if data['special_offer'] %} checked {% endif %}>
+                <input type="hidden" name="data[is_active]" value="1">
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th class="col-md-1"></th>
                             <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for id, gameCategory in gameCategories %}
                         <tr>
-                            <td><input type="checkbox" name="data[categories][]" value="{{id}}"></td>
+                            <td><input type="checkbox" name="data[categories][]"
+                                       value="{{id}}" {% if id in data['categories']|keys %} checked {% endif %}></td>
                             <td>{{ gameCategory.getName() }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1"></th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for id, gameGenre in gameGenres %}
+                        <tr>
+                            <td><input type="checkbox" name="data[genres][]"
+                                       value="{{id}}" {% if id in data['genres']|keys %} checked {% endif %} ></td>
+                            <td>{{ gameGenre.getName() }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+
+                <button type="submit" class="btn btn-default" name="data[submit]" value="submit">Submit</button>
+                <a href="{{router.generate('backoffice-game-list')}}" class="btn btn-default">Back</a>
             </div>
         </form>
     </div>

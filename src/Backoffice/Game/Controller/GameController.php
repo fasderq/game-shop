@@ -1,10 +1,15 @@
 <?php
+
 namespace GameShop\Site\Backoffice\Game\Controller;
 
 
-use GameShop\Site\Backoffice\Game\Enum\GameGenreEnum;
+use GameShop\Site\Backoffice\Game\Model\CategoryAssign;
+use GameShop\Site\Backoffice\Game\Model\Game;
+use GameShop\Site\Backoffice\Game\Model\GenreAssign;
 use GameShop\Site\Backoffice\Game\Repository\GameRepository;
+use GameShop\Site\Backoffice\GameCategory\Model\GameCategory;
 use GameShop\Site\Backoffice\GameCategory\Repository\GameCategoryRepository;
+use GameShop\Site\Backoffice\GameGenre\Repository\GameGenreRepository;
 use GameShop\Site\General\Renderer;
 use GameShop\Site\User\Service\SessionService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -23,6 +28,7 @@ class GameController
     protected $sessionService;
     protected $gameRepository;
     protected $gameCategoryRepository;
+    protected $gameGenreRepository;
 
     /**
      * GameController constructor.
@@ -31,19 +37,23 @@ class GameController
      * @param SessionService $sessionService
      * @param GameRepository $gameRepository
      * @param GameCategoryRepository $gameCategoryRepository
+     * @param GameGenreRepository $gameGenreRepository
      */
     public function __construct(
         Router $router,
         Renderer $renderer,
         SessionService $sessionService,
         GameRepository $gameRepository,
-        GameCategoryRepository $gameCategoryRepository
-    ) {
-        $this->router =  $router;
+        GameCategoryRepository $gameCategoryRepository,
+        GameGenreRepository $gameGenreRepository
+    )
+    {
+        $this->router = $router;
         $this->renderer = $renderer;
-        $this->sessionService =  $sessionService;
-        $this->gameRepository =  $gameRepository;
+        $this->sessionService = $sessionService;
+        $this->gameRepository = $gameRepository;
         $this->gameCategoryRepository = $gameCategoryRepository;
+        $this->gameGenreRepository = $gameGenreRepository;
     }
 
     /**
@@ -73,13 +83,29 @@ class GameController
 
         $gameId = (int)$request->get('id');
 
+        if ($request->get('data')['submit']) {
+            $data = $request->get('data');
+            $errors = $this->validateGameFormData($data);
+
+            if (empty($errors)) {
+                $this->saveGameFormData($data, $gameId);
+
+                return new RedirectResponse($this->router->generate('backoffice-game-list'));
+            }
+
+        } elseif ($gameId) {
+            $data = $this->getGameFormData($gameId);
+        }
+
+
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_edit.html',
             [
                 'id' => $gameId,
                 'errors' => $errors ?? [],
                 'data' => $data ?? [],
-                'gameCategories' => $this->gameCategoryRepository->getGameCategories()
+                'gameCategories' => $this->gameCategoryRepository->getGameCategories(),
+                'gameGenres' => $this->gameGenreRepository->getGameGenres()
             ],
             $request->getSession()
         );
@@ -95,5 +121,93 @@ class GameController
         $this->gameRepository->deleteGame((int)$request->get('id'));
 
         return new RedirectResponse($this->router->generate('backoffice-game-list'));
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function validateGameFormData(array $data): array
+    {
+        $errors = [];
+
+        if (empty(trim($data['name']))) {
+            $errors['name'] = 'name is required';
+        }
+
+        if (empty(trim($data['price']))) {
+            $errors['price'] = 'price is required';
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @param array $data
+     * @param int|null $id
+     */
+    protected function saveGameFormData(array $data, int $id = null): void
+    {
+        $game = new Game(
+            $data['name'],
+            $data['price'],
+            $data['special_offer'] ?? 0,
+            $data['required_age'],
+            $data['is_active']
+        );
+
+
+        if (empty($id)) {
+            $this->gameRepository->addGame(
+                $game,
+                $data['categories'] ?? [],
+                $data['genres'] ?? []
+            );
+        } else {
+            $this->gameRepository->editGame(
+                $game,
+                $id,
+                $data['categories'] ?? [],
+                $data['genres'] ?? []
+            );
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    protected function getGameFormData(int $id): array
+    {
+        $game = $this->gameRepository->getGameById($id);
+
+        return [
+            'name' => $game->getName(),
+            'price' => $game->getPrice(),
+            'required_age' => $game->getRequiredAge(),
+            'special_offer' => $game->getSpecialOffer(),
+            'categories' => array_reduce(
+                $this->gameRepository->getGameCategories($id),
+                function (array $row, CategoryAssign $categoryAssign) {
+                    return $row + [
+                        $categoryAssign->getCategoryId() => [
+                            'name' => $categoryAssign->getCategoryName()
+                        ]
+                    ];
+                },
+                []
+            ),
+            'genres' => array_reduce(
+                $this->gameRepository->getGameGenres($id),
+                function (array $row, GenreAssign $genreAssign) {
+                    return $row + [
+                        $genreAssign->getGenreId() => [
+                            'name' => $genreAssign->getGenreName()
+                        ]
+                    ];
+                },
+                []
+            )
+        ];
     }
 }

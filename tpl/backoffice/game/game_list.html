@@ -4,12 +4,11 @@
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
+        {% if games %}
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Category</th>
-                    <th>Genre</th>
                     <th>Price</th>
                     <th>Special offer</th>
                     <th>Required age</th>
@@ -20,8 +19,6 @@
             {% for id, game in games %}
                 <tr>
                     <td>{{ game.getName() }}</td>
-                    <td>{{ game.getCategory() }}</td>
-                    <td>{{ game.getGenre() }}</td>
                     <td>{{ game.getPrice() }}</td>
                     <td>{{ game.getSpecialOffer() }}</td>
                     <td>{{ game.getRequiredAge() }}</td>
@@ -37,6 +34,9 @@
             {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <h1>Games does not exist</h1>
+        {% endif %}
         <a href="{{router.generate('backoffice-game-edit', {'id': 0})}}" class="btn btn-default">
             <i class="glyphicon glyphicon-plus"></i>
             Add game
