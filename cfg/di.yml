@@ -73,3 +73,7 @@ services:
   controller.backoffice_game-genre:
     class : GameShop\Site\Backoffice\GameGenre\Controller\GameGenreController
     autowire: true
+
+  controller.backoffice_console:
+    class: GameShop\Site\Backoffice\Console\Controller\ConsoleController
+    autowire: true
