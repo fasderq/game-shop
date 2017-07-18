@@ -1,17 +1,17 @@
 <?php
 
 
-namespace GameShop\Site\Backoffice\Console\Model;
+namespace GameShop\Site\Backoffice\Specification\Model;
 
 /**
  * Class Specification
- * @package GameShop\Site\Backoffice\Console\Model
+ * @package GameShop\Site\Backoffice\Specification\Model
  */
 class Specification
 {
     protected $id;
     protected $console_id;
-    protected $specification;
+    protected $description;
     protected $value;
 
 
@@ -20,12 +20,12 @@ class Specification
      */
     public function __construct(
         int $console_id,
-        string $specification,
+        string $description,
         string $value
 )
     {
         $this->console_id = $console_id;
-        $this->specification = $specification;
+        $this->description = $description;
         $this->value = $value;
     }
 
@@ -48,9 +48,9 @@ class Specification
     /**
      * @return string
      */
-    public function getSpecification(): string
+    public function getDescription(): string
     {
-        return $this->specification;
+        return $this->description;
     }
 
     /**

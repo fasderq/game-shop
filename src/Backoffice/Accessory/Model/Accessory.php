@@ -1,17 +1,17 @@
 <?php
 
-namespace GameShop\Site\Backoffice\Console\Model;
+namespace GameShop\Site\Backoffice\Accessory\Model;
 
 /**
- * Class Console
- * @package GameShop\Site\Backoffice\Console\Model
+ * Class Accessory
+ * @package GameShop\Site\Backoffice\Accessory\Model
  */
 class Accessory
 {
     protected $name;
 
     /**
-     * Console constructor.
+     * Accessory constructor.
      */
     public function __construct(string $name)
     {
