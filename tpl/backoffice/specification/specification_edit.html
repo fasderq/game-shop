@@ -18,15 +18,16 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <form action="{{router.generate('backoffice-console-edit', {'id': id})}}" method="post">
+        <form action="{{router.generate('backoffice-specification-edit', {'id': id})}}" method="post">
             <div class="form-group">
-                <label for="code">Артикул</label>
-                <input type="text" class="form-control" name="data[code]" id="code" placeholder="Артикул"
-                       value="{{ data['code'] }}">
-                <label for="title">Модель</label>
-                <input type="text" class="form-control" name="data[name]" id="title" placeholder="Модель"
-                       value="{{ data['name'] }}">
-                <input type="hidden" name="data[is_active]" value="1">
+                <label for="specification">Характеристика</label>
+                <input type="text" class="form-control" name="data[specification]" id="specification" placeholder="Характеристика"
+                       value="{{ data['specicfication'] }}">
+                <label for="value">Значение</label>
+                <input type="text" class="form-control" name="data[value]" id="value" placeholder="Модель"
+                       value="{{ data['value'] }}">
+                <input type="hidden" name="data[console_id]" value="{'id': id}">
+
             </div>
 
             <button type="submit" class="btn btn-default" name="data[submit]" value="submit">Записать</button>

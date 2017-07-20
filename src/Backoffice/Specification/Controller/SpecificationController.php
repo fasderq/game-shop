@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Router;
 
 /**
- * Class ConsoleController
- * @package GameShop\Site\Backoffice\Console\Controller
+ * Class SpecificationController
+ * @package GameShop\Site\Backoffice\Specicfication\Controller
  */
 class SpecificationController
 {
@@ -43,17 +43,28 @@ class SpecificationController
         $this->specificationRepository = $specificationRepository;
     }
 
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function specificationByConsole(Request $request): Response
-    {
+//    /**
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function specificationByConsole(Request $request): Response
+//    {
+//
+//        $this->sessionService->requireUserId($request->getSession());
+//
+//        return  $this->specificationRepository->getSpecification('id');
+//
+//    }
 
+
+    public function specificationEdit(Request $request): Response
+    {
         $this->sessionService->requireUserId($request->getSession());
 
-        return  $this->specificationRepository->getSpecification('id');
-
+        return $this->renderer->getHtmlResponse(
+            'backoffice/specification_edit.html',  [],  $request->getSession()
+        );
     }
+
 
 }
