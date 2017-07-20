@@ -1,7 +1,7 @@
 <?php
 
 
-namespace GameShop\Site\Backoffice\Console\Exception;
+namespace GameShop\Site\Backoffice\Specification\Exception;
 
 /**
  * Created by PhpStorm.
