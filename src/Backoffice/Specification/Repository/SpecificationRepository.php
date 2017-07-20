@@ -74,9 +74,10 @@ class SpecificationRepository
     protected function specificationToRow(Specification $specification): array
     {
         return [
-            'description' => $specification->getDescription(),
-            'value' => $specification->getValue(),
-            'console_id' => $specification->getConsoleId()
+
+            'console_id' => $specification->getConsoleId(),
+            'value' => $specification->getValue()
+
         ];
     }
 
@@ -87,9 +88,8 @@ class SpecificationRepository
     protected function rowToSpecification(array $row): Specification
     {
         return new Specification(
-            $row['description'],
-            $row['value'],
-            $row ['console_id']
+            $row['console_id'],
+            $row['value']
         );
     }
 }
