@@ -159,7 +159,7 @@ CREATE TABLE `console_specification` (
   KEY `console_idx` (`console_id`),
   CONSTRAINT `console_specification_ref` FOREIGN KEY (`console_id`) REFERENCES `console` (`id`),
   CONSTRAINT `specification_console_ref` FOREIGN KEY (`specification_id`) REFERENCES `specification` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=urf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `specification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
