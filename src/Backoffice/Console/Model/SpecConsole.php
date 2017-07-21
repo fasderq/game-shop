@@ -1,11 +1,11 @@
 <?php
 
 
-namespace GameShop\Site\Backoffice\Specification\Model;
+namespace GameShop\Site\Backoffice\Console\Model;
 
 /**
  * Class SpeConsole
- * @package GameShop\Site\Backoffice\Specification\Model
+ * @package GameShop\Site\Backoffice\Console\Model
  */
 class SpecConsole
 {

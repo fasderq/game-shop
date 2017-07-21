@@ -67,6 +67,6 @@ services:
     autowire: true
 
   controller.backoffice_specification:
-      class: GameShop\Site\Backoffice\Specicfication\Controller\SpecificationController
-      autowire: true
+    class: GameShop\Site\Backoffice\Specicfication\Controller\SpecificationController
+    autowire: true
 
