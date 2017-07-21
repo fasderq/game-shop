@@ -4,6 +4,7 @@ namespace GameShop\Site\Backoffice\Specification\Controller;
 
 
 use GameShop\Site\Backoffice\Specification\Model\Specification;
+use GameShop\Site\Backoffice\Specification\Model\SpecConsole;
 use GameShop\Site\Backoffice\Specification\Repository\SpecificationRepository;
 use GameShop\Site\General\Renderer;
 use GameShop\Site\User\Service\SessionService;
@@ -62,7 +63,7 @@ class SpecificationController
         $this->sessionService->requireUserId($request->getSession());
 
         return $this->renderer->getHtmlResponse(
-            'backoffice/specification_edit.html',  [],  $request->getSession()
+            'backoffice/specification/specification_edit.html',  [],  $request->getSession()
         );
     }
 
