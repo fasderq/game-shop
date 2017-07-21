@@ -87,7 +87,7 @@ class ConsoleController
             'backoffice/console/console_edit.html',
             [
                 'id' => $consoleId,
-                'data' => $ConsoleFormData ?? [],
+                'data' => $consoleFormData ?? [],
                 'errors' => $errors ?? []
             ],
             $request->getSession()
@@ -158,6 +158,8 @@ class ConsoleController
 
     protected function specificationEdit()
     {
+
+
 
     }
 }
