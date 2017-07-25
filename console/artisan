@@ -9,6 +9,18 @@ use GameShop\Site\General\EnvLoader;
 use Symfony\Component\Console\Application;
 use GameShop\Site\Console\UserCommand;
 use Doctrine\DBAL\Connection;
+use GameShop\Site\General\DoctrineParameterLoader;
+use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand;
+use Symfony\Component\Console\Helper\HelperSet;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Symfony\Component\Console\Helper\QuestionHelper;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand;
+use Doctrine\DBAL\Migrations\Tools\Console\Command\AbstractCommand;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -44,22 +56,60 @@ $container = (function (): ContainerInterface {
     $container->setParameter('mysql.user', 'root');
     $container->setParameter('mysql.passwd', 123456);
 
+    (new DoctrineParameterLoader(
+        $container,
+        sprintf('%s/../cfg/parameter', __DIR__)
+    ))->load();
+
     $container->compile();
 
     return $container;
 })();
+
 
 if ($container instanceof ContainerInterface) {
 
     $application = new Application();
     $connection = $container->get('db_core_connection');
 
+
     if ($connection instanceof Connection) {
         $userCommand = new UserCommand();
         $userCommand->setConnection($connection);
         $application->add($userCommand);
+
     }
 
+    $migrationConfig = $container->get('doctrine_config');
+    if ($migrationConfig instanceof Configuration) {
+        $migrationCommands = [
+            new DiffCommand(),
+            new ExecuteCommand(),
+            new GenerateCommand(),
+            new MigrateCommand(),
+            new StatusCommand(),
+            new VersionCommand()
+        ];
+
+        $configuredMigrationCommands = [];
+        foreach ($migrationCommands as $migrationCommand) {
+            if ($migrationCommand instanceof AbstractCommand) {
+                $migrationCommand->setMigrationConfiguration($migrationConfig);
+                $configuredMigrationCommands[] = $migrationCommand;
+            }
+        }
+
+        $application->setHelperSet(
+            new HelperSet(
+                [
+                    'db' => new ConnectionHelper($connection),
+                    'dialog' => new QuestionHelper(),
+                ]
+            )
+        );
+
+        $application->addCommands($configuredMigrationCommands);
+    }
 
     $application->run();
 }

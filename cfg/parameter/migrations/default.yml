@@ -1,0 +1,4 @@
+name: Example Migrations
+namespace: ExampleMigrations\DoctrineMigrations
+table_name: migrations
+dir_name: database/migrations

@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\HttpFoundation\Response;
 use GameShop\Site\General\Exception\ResponseException;
 use Symfony\Component\Routing\Router;
+use GameShop\Site\General\ParameterLoader;
+use GameShop\Site\General\DoctrineParameterLoader;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -37,6 +39,16 @@ $container = (function (): ContainerInterface {
     ))->load('di.yml');
 
     (new EnvLoader($container))->load();
+
+//    (new ParameterLoader(
+//        $container,
+//        sprintf('%s/../cfg/parameter', __DIR__)
+//    ))->load();
+//
+    (new DoctrineParameterLoader(
+        $container,
+        sprintf('%s/../cfg/parameter', __DIR__)
+    ))->load();
 
     $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
     $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));

@@ -50,6 +50,16 @@ services:
         driver: 'pdo_mysql'
         charset: 'UTF8'
 
+  doctrine_config:
+    class: Doctrine\DBAL\Migrations\Configuration\Configuration
+    autowiring_types: Doctrine\DBAL\Migrations\Configuration\Configuration
+    arguments:
+      - '@db_core_connection'
+    calls:
+      - [setMigrationsNamespace, ['GameShopMigrations\DoctrineMigrations']]
+      - [setMigrationsDirectory, ['database/migrations/']]
+
+
   controller.general:
     class: GameShop\Site\Frontoffice\General\Controller\GeneralController
     autowire: true
