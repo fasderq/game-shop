@@ -66,9 +66,7 @@ $container = (function (): ContainerInterface {
     return $container;
 })();
 
-
 if ($container instanceof ContainerInterface) {
-
     $application = new Application();
     $connection = $container->get('db_core_connection');
 
@@ -77,7 +75,6 @@ if ($container instanceof ContainerInterface) {
         $userCommand = new UserCommand();
         $userCommand->setConnection($connection);
         $application->add($userCommand);
-
     }
 
     $migrationConfig = $container->get('doctrine_config');

@@ -59,7 +59,6 @@ services:
       - [setMigrationsNamespace, ['GameShopMigrations\DoctrineMigrations']]
       - [setMigrationsDirectory, ['database/migrations/']]
 
-
   controller.general:
     class: GameShop\Site\Frontoffice\General\Controller\GeneralController
     autowire: true

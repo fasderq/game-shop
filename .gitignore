@@ -1,2 +1,6 @@
-./idea
-./vendor
+/data/*
+/vendor/
+/.settings/
+/.buildpath
+/.project
+/.idea
