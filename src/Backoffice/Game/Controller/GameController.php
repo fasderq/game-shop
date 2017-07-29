@@ -5,6 +5,8 @@ namespace GameShop\Site\Backoffice\Game\Controller;
 
 use GameShop\Site\Backoffice\Game\Model\CategoryAssign;
 use GameShop\Site\Backoffice\Game\Model\Game;
+use GameShop\Site\Backoffice\Game\Model\GameFeature;
+use GameShop\Site\Backoffice\Game\Model\GameInfo;
 use GameShop\Site\Backoffice\Game\Model\GenreAssign;
 use GameShop\Site\Backoffice\Game\Repository\GameRepository;
 use GameShop\Site\Backoffice\GameCategory\Model\GameCategory;
@@ -97,13 +99,14 @@ class GameController
             $data = $this->getGameFormData($gameId);
         }
 
-
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_edit.html',
             [
                 'id' => $gameId,
                 'errors' => $errors ?? [],
                 'data' => $data ?? [],
+                'gameInfo' => $this->gameRepository->getGameInfoByGameId($gameId),
+                'gameFeatures' => $this->gameRepository->getGameFeatureByGameId($gameId),
                 'gameCategories' => $this->gameCategoryRepository->getGameCategories(),
                 'gameGenres' => $this->gameGenreRepository->getGameGenres()
             ],
@@ -135,10 +138,6 @@ class GameController
             $errors['name'] = 'name is required';
         }
 
-        if (empty(trim($data['price']))) {
-            $errors['price'] = 'price is required';
-        }
-
         return $errors;
     }
 
@@ -150,23 +149,39 @@ class GameController
     {
         $game = new Game(
             $data['name'],
-            $data['price'],
-            $data['special_offer'] ?? 0,
-            $data['required_age'],
-            $data['is_active']
+            $data['description']
         );
 
+        $gameFeature = new GameFeature(
+            $id,
+            $data['gameFeature']['platform'],
+            $data['gameFeature']['language'],
+            $data['gameFeature']['required_age']
+        );
+
+        $gameInfo = new GameInfo(
+            $id,
+            $data['gameInfo']['series'],
+            $data['gameInfo']['publisher'],
+            $data['gameInfo']['publicationType'],
+            $data['gameInfo']['revision'],
+            $data['gameInfo']['validity']
+        );
 
         if (empty($id)) {
             $this->gameRepository->addGame(
                 $game,
+                $gameFeature,
+                $gameInfo,
                 $data['categories'] ?? [],
                 $data['genres'] ?? []
             );
         } else {
             $this->gameRepository->editGame(
-                $game,
                 $id,
+                $game,
+                $gameFeature,
+                $gameInfo,
                 $data['categories'] ?? [],
                 $data['genres'] ?? []
             );
@@ -180,12 +195,24 @@ class GameController
     protected function getGameFormData(int $id): array
     {
         $game = $this->gameRepository->getGameById($id);
+        $gameFeature = $this->gameRepository->getGameFeatureByGameId($id);
+        $gameInfo =  $this->gameRepository->getGameInfoByGameId($id);
 
         return [
             'name' => $game->getName(),
-            'price' => $game->getPrice(),
-            'required_age' => $game->getRequiredAge(),
-            'special_offer' => $game->getSpecialOffer(),
+            'description' => $game->getDescription(),
+            'gameFeature' => [
+                'platform' => $gameFeature->getPlatform(),
+                'language' => $gameFeature->getLanguage(),
+                'required_age' => $gameFeature->getRequiredAge()
+            ],
+            'gameInfo' => [
+                'series' => $gameInfo->getSeries(),
+                'publisher' => $gameInfo->getPublisher(),
+                'publicationType' => $gameInfo->getPublicationType(),
+                'revision' => $gameInfo->getRevision(),
+                'validity' => $gameInfo->getValidity(),
+            ],
             'categories' => array_reduce(
                 $this->gameRepository->getGameCategories($id),
                 function (array $row, CategoryAssign $categoryAssign) {
