@@ -6,6 +6,7 @@ namespace GameShop\Site\Backoffice\Game\Controller;
 use GameShop\Site\Backoffice\Game\Model\CategoryAssign;
 use GameShop\Site\Backoffice\Game\Model\Game;
 use GameShop\Site\Backoffice\Game\Model\GameFeature;
+use GameShop\Site\Backoffice\Game\Model\GameInfo;
 use GameShop\Site\Backoffice\Game\Model\GenreAssign;
 use GameShop\Site\Backoffice\Game\Repository\GameRepository;
 use GameShop\Site\Backoffice\GameCategory\Model\GameCategory;
@@ -65,8 +66,6 @@ class GameController
     {
         $this->sessionService->requireUserId($request->getSession());
 
-        var_dump($this->gameRepository->getGames());
-
         return $this->renderer->getHtmlResponse(
             'backoffice/game/game_list.html',
             [
@@ -107,9 +106,9 @@ class GameController
                 'errors' => $errors ?? [],
                 'data' => $data ?? [],
                 'gameInfo' => $this->gameRepository->getGameInfoByGameId($gameId),
-                'gameFeatures' => $this->gameRepository->getGameFeatureByGameId($gameId)
-//                'gameCategories' => $this->gameCategoryRepository->getGameCategories(),
-//                'gameGenres' => $this->gameGenreRepository->getGameGenres()
+                'gameFeatures' => $this->gameRepository->getGameFeatureByGameId($gameId),
+                'gameCategories' => $this->gameCategoryRepository->getGameCategories(),
+                'gameGenres' => $this->gameGenreRepository->getGameGenres()
             ],
             $request->getSession()
         );
@@ -139,10 +138,6 @@ class GameController
             $errors['name'] = 'name is required';
         }
 
-        if (empty(trim($data['price']))) {
-            $errors['price'] = 'price is required';
-        }
-
         return $errors;
     }
 
@@ -154,23 +149,39 @@ class GameController
     {
         $game = new Game(
             $data['name'],
-            $data['price'],
-            $data['special_offer'] ?? 0,
-            $data['required_age'],
-            $data['is_active']
+            $data['description']
         );
 
+        $gameFeature = new GameFeature(
+            $id,
+            $data['gameFeature']['platform'],
+            $data['gameFeature']['language'],
+            $data['gameFeature']['required_age']
+        );
+
+        $gameInfo = new GameInfo(
+            $id,
+            $data['gameInfo']['series'],
+            $data['gameInfo']['publisher'],
+            $data['gameInfo']['publicationType'],
+            $data['gameInfo']['revision'],
+            $data['gameInfo']['validity']
+        );
 
         if (empty($id)) {
             $this->gameRepository->addGame(
                 $game,
+                $gameFeature,
+                $gameInfo,
                 $data['categories'] ?? [],
                 $data['genres'] ?? []
             );
         } else {
             $this->gameRepository->editGame(
-                $game,
                 $id,
+                $game,
+                $gameFeature,
+                $gameInfo,
                 $data['categories'] ?? [],
                 $data['genres'] ?? []
             );
@@ -201,33 +212,29 @@ class GameController
                 'publicationType' => $gameInfo->getPublicationType(),
                 'revision' => $gameInfo->getRevision(),
                 'validity' => $gameInfo->getValidity(),
-            ]
-
-
-
-
-//            'categories' => array_reduce(
-//                $this->gameRepository->getGameCategories($id),
-//                function (array $row, CategoryAssign $categoryAssign) {
-//                    return $row + [
-//                        $categoryAssign->getCategoryId() => [
-//                            'name' => $categoryAssign->getCategoryName()
-//                        ]
-//                    ];
-//                },
-//                []
-//            ),
-//            'genres' => array_reduce(
-//                $this->gameRepository->getGameGenres($id),
-//                function (array $row, GenreAssign $genreAssign) {
-//                    return $row + [
-//                        $genreAssign->getGenreId() => [
-//                            'name' => $genreAssign->getGenreName()
-//                        ]
-//                    ];
-//                },
-//                []
-//            )
+            ],
+            'categories' => array_reduce(
+                $this->gameRepository->getGameCategories($id),
+                function (array $row, CategoryAssign $categoryAssign) {
+                    return $row + [
+                        $categoryAssign->getCategoryId() => [
+                            'name' => $categoryAssign->getCategoryName()
+                        ]
+                    ];
+                },
+                []
+            ),
+            'genres' => array_reduce(
+                $this->gameRepository->getGameGenres($id),
+                function (array $row, GenreAssign $genreAssign) {
+                    return $row + [
+                        $genreAssign->getGenreId() => [
+                            'name' => $genreAssign->getGenreName()
+                        ]
+                    ];
+                },
+                []
+            )
         ];
     }
 }

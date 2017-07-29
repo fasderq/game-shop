@@ -98,7 +98,6 @@ class GameCategoryRepository
     {
         return [
             'name' => $gameCategory->getName(),
-            'description' => $gameCategory->getDescription(),
             'is_active' => $gameCategory->isActive()
         ];
     }
@@ -111,7 +110,6 @@ class GameCategoryRepository
     {
         return new GameCategory(
             $row['name'],
-            $row['description'],
             $row['is_active']
         );
     }

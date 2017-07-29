@@ -17,6 +17,48 @@
                 <label for="description">Описание</label>
                 <textarea name="data[description]" id="description"
                           class="form-control">{{data['description']}}</textarea>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1"></th>
+                                <th>Жанр</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							{% for id, gameGenre in gameGenres %}
+                            <tr>
+                                <td><input type="checkbox" name="data[genres][]"
+                                           value="{{id}}" {% if id in data['genres']|keys %} checked {% endif %} ></td>
+                                <td>{{ gameGenre.getName() }}</td>
+                            </tr>
+                            </tbody>
+							{% endfor %}
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1"></th>
+                                <th>Категория</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							{% for id, gameCategory in gameCategories %}
+                                <tr>
+                                    <td><input type="checkbox" name="data[categories][]"
+                                               value="{{id}}" {% if id in data['categories']|keys %} checked {% endif %}></td>
+                                    <td>{{ gameCategory.getName() }}</td>
+                                </tr>
+							{% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -52,45 +94,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-                {#<table class="table table-hover">#}
-                    {#<thead>#}
-                        {#<tr>#}
-                            {#<th class="col-md-1"></th>#}
-                            {#<th>Category</th>#}
-                        {#</tr>#}
-                    {#</thead>#}
-                    {#<tbody>#}
-                    {#{% for id, gameCategory in gameCategories %}#}
-                        {#<tr>#}
-                            {#<td><input type="checkbox" name="data[categories][]"#}
-                                       {#value="{{id}}" {% if id in data['categories']|keys %} checked {% endif %}></td>#}
-                            {#<td>{{ gameCategory.getName() }}</td>#}
-                        {#</tr>#}
-                    {#{% endfor %}#}
-                    {#</tbody>#}
-                {#</table>#}
-
-                {#<table class="table table-hover">#}
-                    {#<thead>#}
-                        {#<tr>#}
-                            {#<th class="col-md-1"></th>#}
-                            {#<th>Genre</th>#}
-                        {#</tr>#}
-                    {#</thead>#}
-                    {#<tbody>#}
-                    {#{% for id, gameGenre in gameGenres %}#}
-                        {#<tr>#}
-                            {#<td><input type="checkbox" name="data[genres][]"#}
-                                       {#value="{{id}}" {% if id in data['genres']|keys %} checked {% endif %} ></td>#}
-                            {#<td>{{ gameGenre.getName() }}</td>#}
-                        {#</tr>#}
-                    {#</tbody>#}
-                    {#{% endfor %}#}
-                {#</table>#}
             </div>
             <button type="submit" class="btn btn-default" name="data[submit]" value="submit">
                 {% if id == 0 %}

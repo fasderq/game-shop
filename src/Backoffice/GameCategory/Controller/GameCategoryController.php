@@ -112,7 +112,6 @@ class GameCategoryController
     {
         $gameCategory = new GameCategory(
             $data['name'],
-            $data['description'],
             $data['is_active']
         );
 
@@ -133,7 +132,6 @@ class GameCategoryController
 
         return [
             'name' => $gameCategory->getName(),
-            'description' => $gameCategory->getDescription()
         ];
     }
 
