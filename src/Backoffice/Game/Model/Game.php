@@ -8,31 +8,31 @@ namespace GameShop\Site\Backoffice\Game\Model;
 class Game
 {
     protected $name;
-    protected $price;
-    protected $specialOffer;
-    protected $requiredAge;
+    protected $description;
     protected $isActive;
+    protected $gameInfo;
+    protected $gameFeature;
 
     /**
      * Game constructor.
      * @param string $name
-     * @param int $price
-     * @param bool $specialOffer
-     * @param int|null $requiredAge
+     * @param null|string $description
      * @param bool $isActive
+     * @param GameInfo|null $gameInfo
+     * @param GameFeature|null $gameFeature
      */
     public function __construct(
         string $name,
-        int $price,
-        ?bool $specialOffer = false,
-        ?int $requiredAge = null,
-        bool $isActive = true
+        ?string $description = null,
+        bool $isActive = true,
+        ?GameInfo $gameInfo = null,
+        ?GameFeature $gameFeature = null
     ) {
         $this->name = $name;
-        $this->price = $price;
-        $this->specialOffer = $specialOffer;
-        $this->requiredAge = $requiredAge;
-        $this->isActive =  $isActive;
+        $this->description = $description;
+        $this->isActive = $isActive;
+        $this->gameInfo = $gameInfo;
+        $this->gameFeature = $gameFeature;
     }
 
     /**
@@ -44,27 +44,11 @@ class Game
     }
 
     /**
-     * @return int
+     * @return null|string
      */
-    public function getPrice(): int
+    public function getDescription(): ?string
     {
-        return $this->price;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getSpecialOffer(): bool
-    {
-        return $this->specialOffer;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getRequiredAge(): ?int
-    {
-        return $this->requiredAge;
+        return $this->description;
     }
 
     /**

@@ -6,8 +6,11 @@ use Doctrine\DBAL\Connection;
 use GameShop\Site\Backoffice\Game\Exception\GameNotFound;
 use GameShop\Site\Backoffice\Game\Model\CategoryAssign;
 use GameShop\Site\Backoffice\Game\Model\Game;
+use GameShop\Site\Backoffice\Game\Model\GameFeature;
+use GameShop\Site\Backoffice\Game\Model\GameInfo;
 use GameShop\Site\Backoffice\Game\Model\GenreAssign;
 use GameShop\Site\Backoffice\GameCategory\Model\GameCategory;
+use GameShop\Site\General\Exception\EntryNotFound;
 
 /**
  * Class GameRepository
@@ -27,24 +30,25 @@ class GameRepository
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      * @return Game
      * @throws GameNotFound
      */
-    public function getGameById(int $id): Game
+    public function getGameById(? int $id): Game
     {
-        $game = $this->connection->createQueryBuilder()
+        $query = $this->connection->createQueryBuilder()
             ->select('*')
             ->from('game')
             ->where('is_active = 1')
-            ->andWhere('id = :id')->setParameter('id', $id)
-            ->execute()->fetch();
+            ->andWhere('id = :id')->setParameter('id',  $id);
+
+        $game = $query->execute()->fetch();
 
         if (!$game) {
-            throw new GameNotFound('game not found');
+            throw new GameNotFound();
+        } else {
+            return $this->rowToGame($game);
         }
-
-        return $this->rowToGame($game);
     }
 
     /**
@@ -69,128 +73,41 @@ class GameRepository
 
     /**
      * @param int $gameId
-     * @return CategoryAssign[]
+     * @return GameInfo|null
      */
-    public function getGameCategories(int $gameId): array
+    public function getGameInfoByGameId(int $gameId): ?GameInfo
     {
         $query = $this->connection->createQueryBuilder()
             ->select('*')
-            ->from('game_categories', 'g')
-            ->where('game_id = :game_id')->setParameter('game_id', $gameId)
-            ->rightJoin('g', 'game_category', 'c', 'g.category_id = c.id')
-            ->andWhere('is_active = 1');
+            ->from('game_info')
+            ->where('game_id = :game_id')->setParameter('game_id',  $gameId);
 
-        $data = $query->execute()->fetchAll();
+        $gameInfo = $query->execute()->fetch();
 
-        $gameCategories = [];
-        foreach ($data as $gameCategory) {
-            $gameCategories[] = $this->rowToGameCategory($gameCategory);
+        if (!$gameInfo) {
+            return null;
+        } else {
+            return $this->rowToGameInfo($gameInfo);
         }
-
-        return $gameCategories;
     }
 
     /**
      * @param int $gameId
-     * @return GenreAssign[]
+     * @return GameFeature|null
      */
-    public function getGameGenres(int $gameId): array
+    public function getGameFeatureByGameId(int $gameId): ?GameFeature
     {
         $query = $this->connection->createQueryBuilder()
             ->select('*')
-            ->from('game_genres', 'g')
-            ->where('game_id = :game_id')->setParameter('game_id', $gameId)
-            ->rightJoin('g', 'game_genre', 'gs', 'g.genre_id = gs.id');
+            ->from('game_feature')
+            ->where('game_id = :game_id')->setParameter('game_id',  $gameId);
 
-        $data = $query->execute()->fetchAll();
+        $gameFeature = $query->execute()->fetch();
 
-        $gameGenres = [];
-        foreach ($data as $gameGenre) {
-            $gameGenres[] = $this->rowToGameGenre($gameGenre);
-        }
-
-        return $gameGenres;
-    }
-
-    /**
-     * @param Game $game
-     * @param array $categories
-     * @param array $genres
-     */
-    public function addGame(Game $game, array $categories = [], array $genres = []): void
-    {
-        $this->connection->beginTransaction();
-
-        $this->connection->insert('game', $this->gameToRow($game));
-        $gameId = $this->connection->lastInsertId();
-
-        $this->editGameCategories($gameId, $categories);
-        $this->editGameGenres($gameId, $genres);
-
-        $this->connection->commit();
-    }
-
-    /**
-     * @param Game $game
-     * @param int $id
-     * @param array $categories
-     * @param array $genres
-     */
-    public function editGame(Game $game, int $id, array $categories = [], array $genres = []): void
-    {
-        $this->connection->beginTransaction();
-
-        $this->connection->update('game', $this->gameToRow($game), ['id' => $id]);
-
-        $this->editGameCategories($id, $categories);
-        $this->editGameGenres($id, $genres);
-
-        $this->connection->commit();
-    }
-
-    /**
-     * @param int $id
-     */
-    public function deleteGame(int $id): void
-    {
-        $this->connection->update('game', ['is_active' => 0], ['id' => $id]);
-    }
-
-    /**
-     * @param int $gameId
-     * @param array $categories
-     */
-    protected function editGameCategories(int $gameId, array $categories): void
-    {
-        $this->connection->delete('game_categories', ['game_id' => $gameId]);
-
-        foreach ($categories as $category) {
-            $this->connection->insert(
-                'game_categories',
-                [
-                    'game_id' => $gameId,
-                    'category_id' => $category
-                ]
-            );
-        }
-    }
-
-    /**
-     * @param int $gameId
-     * @param array $genres
-     */
-    protected function editGameGenres(int $gameId, array $genres): void
-    {
-        $this->connection->delete('game_genres', ['game_id' => $gameId]);
-
-        foreach ($genres as $genre) {
-            $this->connection->insert(
-                'game_genres',
-                [
-                    'game_id' => $gameId,
-                    'genre_id' => $genre
-                ]
-            );
+        if (!$gameFeature) {
+            return null;
+        } else {
+            return $this->rowToGameFeature($gameFeature);
         }
     }
 
@@ -198,53 +115,42 @@ class GameRepository
      * @param array $row
      * @return Game
      */
-    protected function rowToGame(array $row): Game
-    {
+    protected function rowToGame(array $row): Game {
         return new Game(
             $row['name'],
-            $row['price'],
-            $row['special_offer'],
-            $row['required_age'],
+            $row['description'],
             $row['is_active']
-        );
-    }
 
-    /**
-     * @param Game $game
-     * @return array
-     */
-    protected function gameToRow(Game $game): array
-    {
-        return [
-            'name' => $game->getName(),
-            'price' => $game->getPrice(),
-            'special_offer' => $game->getSpecialOffer(),
-            'required_age' => $game->getRequiredAge(),
-            'is_active' => $game->isActive()
-        ];
-    }
-
-    /**
-     * @param array $row
-     * @return CategoryAssign
-     */
-    protected function rowToGameCategory(array $row): CategoryAssign
-    {
-        return new CategoryAssign(
-            $row['category_id'],
-            $row['name']
         );
     }
 
     /**
      * @param array $row
-     * @return GenreAssign
+     * @return GameInfo
      */
-    protected function rowToGameGenre(array $row): GenreAssign
+    protected function rowToGameInfo(array $row): GameInfo
     {
-        return new GenreAssign(
-            $row['genre_id'],
-            $row['name']
+        return new GameInfo(
+            $row['game_id'],
+            $row['series'],
+            $row['publisher'],
+            $row['publication_type'],
+            $row['revision'],
+            $row['validity']
+        );
+    }
+
+    /**
+     * @param array $row
+     * @return GameFeature
+     */
+    protected function rowToGameFeature(array $row): GameFeature
+    {
+        return new GameFeature(
+            $row['game_id'],
+            $row['platform'],
+            $row['language'],
+            $row['required_age']
         );
     }
 }

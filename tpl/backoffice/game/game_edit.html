@@ -4,66 +4,102 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <h1>Game edit</h1>
+        <h1>Редактирование игры</h1>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <form action="{{router.generate('backoffice-game-edit', {'id': id})}}">
+        <form action="{{router.generate('backoffice-game-edit', {'id': id})}}" method="post">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="data[name]" value="{{data['name']}}">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price"
-                       name="data[price]" value="{{data['price']}}">
-                <label for="required_age">Required age</label>
-                <input type="number" class="form-control" id="required_age"
-                       name="data[required_age]" value="{{data['required_age']}}">
-                <label for="special_offer">Special offer</label>
-                <input type="checkbox" class="checkbox" name="data[special_offer]"
-                       value="1" id="special_offer" {% if data['special_offer'] %} checked {% endif %}>
-                <input type="hidden" name="data[is_active]" value="1">
+                <label for="name">Название</label>
+                <input class="form-control" id="name" name="data[name]" value="{{data['name']}}">
+                <label for="description">Описание</label>
+                <textarea name="data[description]" id="description"
+                          class="form-control">{{data['description']}}</textarea>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="platform">Платформа</label>
+                            <input type="text" class="form-control" id="platform"
+                                   name="data[gameFeature][platform]" value="{{ data['gameFeature']['platform'] }}">
+                            <label for="language">Язык</label>
+                            <input type="text" class="form-control" id="language"
+                                   name="data[gameFeature][language]" value="{{ data['gameFeature']['language'] }}">
+                            <label for="requiredAge">Ограничение по возрасту</label>
+                            <input type="number" class="form-control" id="requiredAge"
+                                   name="data[gameFeature][required_age]" value="{{ data['gameFeature']['required_age'] }}">
+                        </div>
+                    </div>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1"></th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for id, gameCategory in gameCategories %}
-                        <tr>
-                            <td><input type="checkbox" name="data[categories][]"
-                                       value="{{id}}" {% if id in data['categories']|keys %} checked {% endif %}></td>
-                            <td>{{ gameCategory.getName() }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="series">Серия</label>
+                            <input type="text" class="form-control" id="series"
+                                   name="data[gameInfo][series]" value="{{ data['gameInfo']['series'] }}">
+                            <label for="publisher">Издатель</label>
+                            <input type="text" class="form-control" id="publisher"
+                                   name="data[gameInfo][publisher]" value="{{ data['gameInfo']['publisher'] }}">
+                            <label for="publicationType">Тип издания</label>
+                            <input type="text" class="form-control" id="publicationType"
+                                   name="data[gameInfo][publicationType]" value="{{ data['gameInfo']['publicationType'] }}">
+                            <label for="revision">Версия издания</label>
+                            <input type="text" class="form-control" id="revision"
+                                   name="data[gameInfo][revision]" value="{{ data['gameInfo']['revision'] }}">
+                            <label for="validity">Срок действия</label>
+                            <input type="text" class="form-control" id="validity"
+                                   name="data[gameInfo][validity]" value="{{ data['gameInfo']['validity'] }}">
+                        </div>
+                    </div>
+                </div>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1"></th>
-                            <th>Genre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for id, gameGenre in gameGenres %}
-                        <tr>
-                            <td><input type="checkbox" name="data[genres][]"
-                                       value="{{id}}" {% if id in data['genres']|keys %} checked {% endif %} ></td>
-                            <td>{{ gameGenre.getName() }}</td>
-                        </tr>
-                    </tbody>
-                    {% endfor %}
-                </table>
 
-                <button type="submit" class="btn btn-default" name="data[submit]" value="submit">Submit</button>
-                <a href="{{router.generate('backoffice-game-list')}}" class="btn btn-default">Back</a>
+
+
+                {#<table class="table table-hover">#}
+                    {#<thead>#}
+                        {#<tr>#}
+                            {#<th class="col-md-1"></th>#}
+                            {#<th>Category</th>#}
+                        {#</tr>#}
+                    {#</thead>#}
+                    {#<tbody>#}
+                    {#{% for id, gameCategory in gameCategories %}#}
+                        {#<tr>#}
+                            {#<td><input type="checkbox" name="data[categories][]"#}
+                                       {#value="{{id}}" {% if id in data['categories']|keys %} checked {% endif %}></td>#}
+                            {#<td>{{ gameCategory.getName() }}</td>#}
+                        {#</tr>#}
+                    {#{% endfor %}#}
+                    {#</tbody>#}
+                {#</table>#}
+
+                {#<table class="table table-hover">#}
+                    {#<thead>#}
+                        {#<tr>#}
+                            {#<th class="col-md-1"></th>#}
+                            {#<th>Genre</th>#}
+                        {#</tr>#}
+                    {#</thead>#}
+                    {#<tbody>#}
+                    {#{% for id, gameGenre in gameGenres %}#}
+                        {#<tr>#}
+                            {#<td><input type="checkbox" name="data[genres][]"#}
+                                       {#value="{{id}}" {% if id in data['genres']|keys %} checked {% endif %} ></td>#}
+                            {#<td>{{ gameGenre.getName() }}</td>#}
+                        {#</tr>#}
+                    {#</tbody>#}
+                    {#{% endfor %}#}
+                {#</table>#}
             </div>
+            <button type="submit" class="btn btn-default" name="data[submit]" value="submit">
+                {% if id == 0 %}
+                Добавить
+                {% else %}
+                Редактировать
+                {% endif %}
+            </button>
+            <a href="{{router.generate('backoffice-game-list')}}" class="btn btn-default">Назад</a>
         </form>
     </div>
 </div>
