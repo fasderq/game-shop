@@ -54,7 +54,7 @@ $container = (function (): ContainerInterface {
     $container->setParameter('mysql.host', 'localhost');
     $container->setParameter('mysql.dbname', 'game-shop');
     $container->setParameter('mysql.user', 'root');
-    $container->setParameter('mysql.passwd', 123456);
+    $container->setParameter('mysql.passwd', 'afhvfwtdn');
 
     (new DoctrineParameterLoader(
         $container,
