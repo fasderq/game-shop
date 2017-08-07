@@ -4,7 +4,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader as DiYamlLoader;
 use Symfony\Component\Config\FileLocator;
-use GameShop\Site\General\EnvLoader;
+use GameShop\Site\General\ConfigurationLoader;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use GameShop\Site\General\Exception\ResponseException;
 use Symfony\Component\Routing\Router;
 use GameShop\Site\General\ParameterLoader;
-use GameShop\Site\General\DoctrineParameterLoader;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -38,17 +37,11 @@ $container = (function (): ContainerInterface {
         new FileLocator(sprintf('%s/../cfg', __DIR__))
     ))->load('di.yml');
 
-    (new EnvLoader($container))->load();
-
-//    (new ParameterLoader(
-//        $container,
-//        sprintf('%s/../cfg/parameter', __DIR__)
-//    ))->load();
-//
-    (new DoctrineParameterLoader(
+    (new ConfigurationLoader(
         $container,
-        sprintf('%s/../cfg/parameter', __DIR__)
+        sprintf('%s/../cfg/configuration/%s', __DIR__, 'configuration.yml')
     ))->load();
+
 
     $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
     $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));

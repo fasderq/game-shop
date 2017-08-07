@@ -5,7 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader as DiYamlLoader;
 use Symfony\Component\Config\FileLocator;
-use GameShop\Site\General\EnvLoader;
+use GameShop\Site\General\ConfigurationLoader;
 use Symfony\Component\Console\Application;
 use GameShop\Site\Console\UserCommand;
 use Doctrine\DBAL\Connection;
@@ -45,7 +45,7 @@ $container = (function (): ContainerInterface {
         new FileLocator(sprintf('%s/../cfg', __DIR__))
     ))->load('di.yml');
 
-    (new EnvLoader($container))->load();
+    (new ConfigurationLoader($container))->load();
 
     $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
     $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));
