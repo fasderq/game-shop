@@ -9,7 +9,7 @@ services:
     arguments:
       - ''
       - GET
-      - 'game-shop.local'
+      - '%www.host%'
       - 'http'
   route_loader:
     class: Symfony\Component\Routing\Loader\YamlFileLoader
