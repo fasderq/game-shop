@@ -26,5 +26,4 @@ class Accessory
         return $this->name;
     }
 
-
 }

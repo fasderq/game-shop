@@ -11,7 +11,6 @@ class Console
     protected $name;
     protected $isActive;
 
-
     /**
      * Console constructor.
      */

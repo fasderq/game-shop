@@ -56,3 +56,4 @@ backoffice-game-genre-delete:
   path:     /backoffice/game-genre/{id}/delete
   defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreDelete' }
 
+
