@@ -37,6 +37,7 @@ services:
     calls:
       - [addExtension, ['@twig_extension_text']]
       - [addGlobal, ['router', '@router']]
+
   db_core_connection:
     class: Doctrine\DBAL\Connection
     autowiring_types: Doctrine\DBAL\Connection
@@ -58,6 +59,13 @@ services:
     calls:
       - [setMigrationsNamespace, ['GameShopMigrations\DoctrineMigrations']]
       - [setMigrationsDirectory, ['database/migrations/']]
+
+  social_vk:
+    class: GuzzleHttp\Client
+    arguments:
+      -
+        client_id: '%social.vk.appid%'
+        client_secret: '%social.vk.secret%'
 
   controller.general:
     class: GameShop\Site\Frontoffice\General\Controller\GeneralController
@@ -85,4 +93,8 @@ services:
 
   controller.backoffice_console:
     class: GameShop\Site\Backoffice\Console\Controller\ConsoleController
+    autowire: true
+
+  controller.social:
+    class: GameShop\Site\Social\Controller\SocialController
     autowire: true

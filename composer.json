@@ -13,8 +13,8 @@
     "twig/twig": "~1.0",
     "twig/extensions": "^1.4",
     "symfony/console": "^3.3",
-    "doctrine/migrations": "^1.5"
-
+    "doctrine/migrations": "^1.5",
+    "google/apiclient": "^2.2"
   },
   "config": {
     "process-timeout": 1800,

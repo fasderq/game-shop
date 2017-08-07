@@ -55,4 +55,12 @@ backoffice-game-genre-edit:
 backoffice-game-genre-delete:
   path:     /backoffice/game-genre/{id}/delete
   defaults: { _controller: 'backoffice_game-genre', _action: 'gameGenreDelete' }
-
+social-sign-in:
+  path:     /social/sign_in/{provider}
+  defaults: { _controller: 'social', _action: 'signIn' }
+social-oauth-callback:
+  path:     /social/oauth_callback/{provider}
+  defaults: { _controller: 'social', _action: 'oauthCallback' }
+debug:
+  path:     /debug
+  defaults: { _controller: 'social', _action: 'debug' }
