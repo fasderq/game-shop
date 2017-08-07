@@ -9,7 +9,6 @@ use GameShop\Site\General\ConfigurationLoader;
 use Symfony\Component\Console\Application;
 use GameShop\Site\Console\UserCommand;
 use Doctrine\DBAL\Connection;
-use GameShop\Site\General\DoctrineParameterLoader;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand;
 use Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand;
@@ -45,21 +44,15 @@ $container = (function (): ContainerInterface {
         new FileLocator(sprintf('%s/../cfg', __DIR__))
     ))->load('di.yml');
 
-    (new ConfigurationLoader($container))->load();
+    (new ConfigurationLoader(
+        $container,
+        sprintf('%s/../cfg/configuration/%s', __DIR__, 'configuration.yml')
+    ))->load();
 
     $container->setParameter('path.cfg', sprintf('%s/../cfg', __DIR__));
     $container->setParameter('path.tpl', sprintf('%s/../tpl', __DIR__));
     $container->setParameter('path.data', sprintf('%s/../data', __DIR__));
 
-    $container->setParameter('mysql.host', 'localhost');
-    $container->setParameter('mysql.dbname', 'game-shop');
-    $container->setParameter('mysql.user', 'root');
-    $container->setParameter('mysql.passwd', 'afhvfwtdn');
-
-    (new DoctrineParameterLoader(
-        $container,
-        sprintf('%s/../cfg/parameter', __DIR__)
-    ))->load();
 
     $container->compile();
 
