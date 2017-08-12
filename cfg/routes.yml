@@ -64,3 +64,23 @@ social-oauth-callback:
 debug:
   path:     /debug
   defaults: { _controller: 'social', _action: 'debug' }
+backoffice-directory-delete:
+  path:     /backoffice/files-delete-directory/{path}
+  defaults: { _controller: 'file_manager', _action: 'deleteDirectory' }
+  requirements:
+    path: '.*'
+backoffice-file-delete:
+  path:     /backoffice/files-delete-file/{path}
+  defaults: { _controller: 'file_manager', _action: 'deleteFile' }
+  requirements:
+    path: '.*'
+backoffice-files:
+  path:     /backoffice/files/{path}
+  defaults: { _controller: 'file_manager', _action: 'files' }
+  requirements:
+    path: '.*'
+file:
+  path:     /file/{filePath}
+  defaults: { _controller: 'general', _action: 'file' }
+  requirements:
+    filePath: '[а-яА-ЯA-Za-z0-9\-_\/., ]+'

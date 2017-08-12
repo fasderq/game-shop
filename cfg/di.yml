@@ -60,6 +60,8 @@ services:
       - [setMigrationsNamespace, ['GameShopMigrations\DoctrineMigrations']]
       - [setMigrationsDirectory, ['database/migrations/']]
 
+
+
   social_vk:
     class: GuzzleHttp\Client
     arguments:
@@ -70,6 +72,8 @@ services:
   controller.general:
     class: GameShop\Site\Frontoffice\General\Controller\GeneralController
     autowire: true
+    calls:
+      - [setDataPath, ['%path.data%']]
 
   controller.auth:
     class: GameShop\Site\Backoffice\Auth\Controller\AuthController
@@ -98,3 +102,9 @@ services:
   controller.social:
     class: GameShop\Site\Social\Controller\SocialController
     autowire: true
+
+  controller.file_manager:
+    class: GameShop\Site\Backoffice\FileManager\Controller\FileManagerController
+    autowire: true
+    calls:
+      - [setDataPath, ['%dataPath%']]
